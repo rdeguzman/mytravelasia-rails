@@ -1,0 +1,27 @@
+<% javascript('datatables-init') %>
+
+<h3>Feedback</h3>
+
+<table class="datatable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @supports.each do |support| %>
+    <tr>
+      <td>
+        <%= support.name %><br/>
+        <%= support.email %><br/>
+        <%= support.contact %>
+      </td>
+      <td><%= link_to  truncate(support.description, :length => 100), admin_support_path(support) %></td>
+      <td><%= support.created_at %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

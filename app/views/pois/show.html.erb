@@ -1,0 +1,182 @@
+<% javascript("jquery.cycle.all.min") %>
+<% javascript("application.slideshow") %>
+<% javascript("application.photo_viewer") %>
+<% javascript("application.collapse_div") %>
+
+<% stylesheet('datatables') %>
+<% javascript('jquery.datatables') %>
+<% javascript('datatables-init') %>
+
+<% title "#{@poi.country_name} - #{@poi.name}" %>
+<% meta_keywords "#{@poi.country_name} - #{@poi.name} #{@poi.full_address}, #{APP_CONFIG[:meta_keywords]}" %>
+<% meta_description "#{@poi.name} located in #{@poi.full_address}. #{APP_CONFIG[:meta_description]}" %>
+
+<%= render :partial => 'shared/breadcrumb' %>
+
+<div class="entry" id="poi_entry">
+
+  <div class="entry-header">
+
+    <h2 class="title" id="poi_name"><%= @poi.name %></h2>
+
+    <p class="meta">
+      <span id="full_address"><%= @poi.full_address %></span><br/>
+
+      <% unless @poi.tel_no.blank? %>
+        <%= @poi.tel_no %><br/>
+      <% end %>
+
+      <% unless @poi.web_url.blank? %>
+        <%= create_web_url_links @poi.web_url %><br/>
+      <% end %>
+
+      <% unless @poi.email.blank? %>
+        <%= create_email_links @poi.email %><br/>
+      <% end %>
+
+      <% if @poi.bookable? %>
+        <%= link_to "Booking Enquiry",
+                    "#booking",
+                    {:class => "button primary single-button"},
+                    :id => "booking_enquiry_button" %>
+      <% end %>
+
+      <% if can? :delete, @poi or @poi.allowed_and_maintained_by?(current_user) %>
+        <br/>
+        <%= link_to "Edit", edit_admin_poi_path(@poi), :class => "button primary" %>
+        <%= link_to "Delete", admin_poi_path, :confirm => 'Are you sure?', :method => :delete, :class => "button danger" %>
+      <% end %>
+
+    </p>
+
+  </div>
+
+
+  <div class="entry-single">
+
+    <% unless @pictures.blank? %>
+      <div style="text-align: center;">
+        <%= default_picture(@poi.picture_thumb_path) %>
+        <span style="display: none; "></span>
+      </div>
+    <% end %>
+
+    <% unless @poi.description.blank? %>
+      <%= simple_format @poi.description %>
+    <% end %>
+
+    <% if can? :manage, @poi %>
+      <p>
+        <%= link_to "Add Another Description", new_admin_description_path(:parent_id => @poi.id, :table_name => 'poi'),
+                  :class => "button" %>
+      </p>
+    <% end %>
+
+    <%= render :partial => 'shared/descriptions' %>
+
+  </div>
+
+
+  <div class="entry-footer">
+
+    <dl class="horizontal"/>
+
+    <dt>Last updated on </dt>
+    <dd>
+      <%= if admin_group? then "#{@poi.updated_at.to_s(:full)} #{time_ago_in_words @poi.updated_at} ago"
+                     else @poi.updated_at.to_s(:small) end %>
+      <span class="separator">|</span>
+    </dd>
+
+    <% unless @poi.last_viewed.blank? then %>
+      <dt>Last viewed </dt>
+      <dd>
+        <em><%= time_ago_in_words @poi.last_viewed %> ago</em>
+        <span class="separator">|</span>
+      </dd>
+    <% end %>
+
+    <dt><%= @poi.total_views %> </dt>
+    <dd>views <span class="separator">|</span></dd>
+
+    <% if @poi.total_likes > 0 then %>
+      <dt>Likes <%= image_tag('button_like.png', :size => '11x11') %></dt>
+      <dd>
+        <%= @poi.total_likes %>
+        <span class="separator">|</span>
+      </dd>
+    <% end %>
+
+    <% if @poi.total_comments > 0 then %>
+      <dt>Comments <%= image_tag('button_comment.png', :size => '11x11') %></dt>
+      <dd>
+        <%= @poi.total_comments %>
+        <span class="separator">|</span>
+      </dd>
+    <% end %>
+
+  </div>
+
+  <%= render :partial => 'pois/ownership' %>
+</div>
+
+<% if @poi.maintained_by?(current_user) %>
+  <%= render :partial => 'pois/approval' %>
+<% end %>
+
+<% if @poi.poi_type_name == 'Hotel' and not @partner_hotels.empty? %>
+  <%= render :partial => 'shared/hotel_rooms' %>
+<% end %>
+
+<% if @poi.has_more_photos? or admin_group? or @poi.allowed_and_maintained_by?(current_user) %>
+  <% content_for :sidebar do %>
+    <%= render :partial => 'shared/picture_list' %>
+  <% end %>
+<% end %>
+
+<%if @poi.bookable? %>
+  <div id="booking-enquiry" class="collapsible-box-content boxed clearfix">
+
+    <h6 class="list-title">Need Booking Assistance</h6>
+    <span class="collapse-trigger">
+      <%= image_tag "collapse-button-up.png" %>
+    </span>
+
+    <div class="clear"></div>
+
+    <div class="content">
+      <hr class="full">
+
+      <%= render :partial => 'bookings/form' %>
+    </div>
+  </div>
+
+<% end %>
+
+<% if @poi.has_map? %>
+  <div id="map" class="collapsible-box-content boxed clearfix">
+
+    <h6 class="list-title">What's Nearby <%= @poi.name %>?</h6>
+    <span class="collapse-trigger">
+      <%= image_tag "collapse-button-up.png" %>
+    </span>
+
+    <div class="clear"></div>
+
+    <div class="content" style="display: block; ">
+
+      <hr class="full">
+
+      <div id="mapdiv" style="height:400px"></div>
+
+    </div>
+
+  </div>
+
+  <%= render :partial => "shared/map_list" %>
+
+  <div id="poi_list">
+    <%= render :partial => "shared/poi_list_in_two_columns" %>
+  </div>
+
+<% end %>

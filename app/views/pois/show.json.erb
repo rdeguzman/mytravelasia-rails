@@ -1,0 +1,12 @@
+<% @poi.picture_thumb_path = picture_path(@poi.picture_thumb_path) %>
+<% @poi.picture_full_path = picture_path(@poi.picture_full_path) %>
+<% @poi["liked"] = @poi.liked_it(params[:profile_id]) %>
+<% @poi[:comment_entries] = format_comments(@poi.comments) %>
+<% @poi[:bookable] = @poi.bookable? %>
+<% if @poi.poi_type_name == 'Hotel' %>
+  <% if @partner_hotels then @poi[:partners] = mobileformat_partner_hotels(@partner_hotels, @user_agent) end %>
+  <% if @rooms then @poi[:rooms] = @rooms end %>
+<% end %>
+<% images = aggregate_images(@poi, @pictures, @web_photos) %>
+<% data = {:poi => @poi, :pictures => images } %>
+<%= raw data.to_json %>

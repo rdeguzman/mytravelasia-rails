@@ -1,0 +1,15 @@
+<% if target.errors.any? %>  
+
+  <div class="error_explanation">  
+    <h1><%= pluralize(target.errors.count, "error") %> found</h1>  
+    
+    <ul>  
+    <% target.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %>
+    </ul>
+    
+  </div>
+  
+  <br/>
+<% end %>

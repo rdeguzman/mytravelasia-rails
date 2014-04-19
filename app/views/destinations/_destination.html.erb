@@ -1,0 +1,17 @@
+<% if destination.total_pois >= 50 %>
+    
+    <li> <b><%= link_to destination.destination_name, country_destination_path(@country, destination)  %> (<%= destination.total_pois %>)</b></li>
+    
+<% elsif destination.total_pois > 0 && destination.total_pois < 50 %>
+    
+    <li> <%= link_to destination.destination_name, country_destination_path(@country, destination)  %> (<%= destination.total_pois %>)</li>
+    
+<% else %>
+  
+  <% if admin_group? %>
+    <li> <%= link_to destination.destination_name, country_destination_path(@country, destination)  %> (<%= destination.total_pois %>)</li>
+  <% else %>
+    <li> <%= destination.destination_name %></li>
+  <% end %>
+  
+<% end %>

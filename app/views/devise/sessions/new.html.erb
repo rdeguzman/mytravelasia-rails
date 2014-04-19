@@ -1,0 +1,34 @@
+<% stylesheet('formtastic') %>
+<% stylesheet('formtastic_changes') %>
+
+<div class="boxed">
+
+  <%= semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <h4>Login</h4>
+
+    <%= f.inputs do %>
+
+      <%= f.input :email %>
+
+      <%= f.input :password %>
+
+      <% if devise_mapping.rememberable? -%>
+        <%= f.input :remember_me, :as => :boolean, :label => "Remember Me" %>
+      <% end %>
+
+    <% end %>
+
+    <%= f.actions do %>
+      <%= f.action :submit,
+                   :as => :button,
+                   :label => "Login",
+                   :button_html => { :class => "button primary", :disable_with => 'Wait...' } %>
+
+    <% end %>
+
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+    <% end -%>
+
+  <% end %>
+</div>

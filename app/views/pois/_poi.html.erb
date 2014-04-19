@@ -1,0 +1,61 @@
+<% if poi %>
+  <%= div_for(poi, :class => "poi-list-entry") do %>
+
+    <div class="main-entry">
+      <div class="marker">
+        <% if poi.has_map? %>
+          <%= image_tag marker_image_default_path(@count) %>
+        <% else %>
+          <h5 style="width:25px;text-align:center;"><%= @count %></h5>
+        <% end %>
+      </div>
+
+      <div class="image">
+        <%= render :partial => 'pois/thumbnail', :locals => {:poi => poi} %>
+      </div>
+
+      <h4 class="title">
+        <%= link_to truncate_text(poi.name, 75), poi_path(poi) %>
+      </h4>
+
+      <%= truncate_text(poi.address, 75) %><br/>
+
+      <div class="footer">
+        <em>
+          <%= poi.poi_type_name %> |
+          <%= format_pluralize(poi.total_pictures, "photo") %> |
+          <%= poi.total_views %> views, last viewed <%= time_ago_in_words poi.viewed_at %> ago
+        </em>
+
+        <% if poi.has_map? %>
+          <br/>
+          <%= link_to_function "Show On Map", "showMarkerByID(#{poi.id});" %> |
+          <%= link_to_function "Zoom In", "zoomToMarkerByID(#{poi.id});" %>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="sidebar">
+
+      <div class="ratings">
+
+        <%= content_tag(:div, "", :class => "star rating#{poi.total_stars.round}") %>
+
+        <span>
+          <%= format_pluralize(poi.total_ratings.to_i, "rating") %>
+        </span>
+
+      </div>
+
+      <div class="rates">
+        <% if poi.has_rate? %>
+          Rates from <br/>
+          <span class="price"><%= format_rate(poi) %></span>
+        <% end %>
+      </div>
+    </div>
+
+
+  <% end %>
+<% end %>

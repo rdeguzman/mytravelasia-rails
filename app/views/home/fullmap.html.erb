@@ -1,0 +1,26 @@
+<% javascript(APP_CONFIG[:google_maps_url]) %>
+
+<script language="javascript">
+  function initialize() {
+
+    var center = new google.maps.LatLng(13.907274, 114.343);
+
+    map = new google.maps.Map(document.getElementById('map_canvas'), {
+      center: center,
+      zoom: 5,
+      mapTypeId: 'roadmap'
+    });
+
+    layer = new google.maps.FusionTablesLayer({
+      query: {
+        select: 'latitude',
+        from: '2018095'
+      }
+    });
+    layer.setMap(map);
+  }
+</script>
+
+<div id="map_canvas" style="width:100%;height:600px;"></div>
+
+<br/>

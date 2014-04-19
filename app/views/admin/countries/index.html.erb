@@ -1,0 +1,32 @@
+<% javascript('datatables-init') %>
+
+<h3>Countries</h3>
+<hr/>
+
+<table class = "datatable">
+  <thead>
+    <tr>
+      <td>id</td>
+      <th>Country Name</th>
+      <th>Country Code</th>
+      <th>Description</th>
+      <th>Total Pois</th>
+      <th>Total Dest</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |c| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= c.id %></td>
+      <td nowrap><%= c.country_name %></td>
+      <td align="center"><%= c.country_code %></td>
+      <td><%= truncate_text(c.description, 70) %></td>
+      <td align="right"><%= c.total_pois %></td>
+      <td align="right"><%= c.total_destinations %></td>
+      <td><%= link_to "Edit", edit_admin_country_path(c) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,35 @@
+<div id="main">
+
+  <div class="entry">
+
+    <div class="entry-header">
+
+      <h2 class="title">Page does not exist</h2>
+
+    </div>
+
+    <div class="entry-single">
+      <p>
+        <%= @reason ? @reason : "Sorry, but we don't have the page you were looking for." %>
+      </p>
+      <p>
+        Commonly hated and misunderstood, this is not an error page but an indication that the page does not exist.
+      </p>
+      <p>
+        <strong>Why were you here?</strong>
+      <p>
+      <p>
+        You might have misspelled or typed the URL incorrectly? You could try searching using the
+        search box on the upper right of this page.
+      </p>
+      <p>
+        If you feel this is an error on our site, please feel free to <%=  link_to "contact us", contact_us_path %>.
+      </p>
+      <p>
+        Even if you refresh this page, it's still the same. Move along now...
+      <p>
+
+    </div>
+
+  </div>
+</div>

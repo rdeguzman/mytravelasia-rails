@@ -1,0 +1,13 @@
+<% label ||= "" %>
+
+<%= f.actions do %>
+
+  <% options = { :as => :button, :button_html => { :class => "button primary", :disable_with => 'Wait...' } }%>
+  <% options.merge!({ :label => label }) unless label.empty? %>
+  <%= f.action :submit, options %>
+
+  <li>
+    <%= link_to "Cancel", :back, :class => "button" %>
+  </li>
+
+<% end %>

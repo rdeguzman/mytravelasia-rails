@@ -1,0 +1,51 @@
+<% stylesheet('formtastic') %>
+<% stylesheet('formtastic_changes_booking') %>
+<% javascript("application.calendar") %>
+
+<%= semantic_form_for @booking do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :poi_id, :as => :hidden,
+                :input_html => { :value => @poi.id } %>
+
+    <%= f.input :first_name, :label => "First Name" %>
+    <%= f.input :last_name, :label => "Last Name" %>
+
+    <hr/>
+
+    <%= f.input :contact_no,
+                :label => "Contact Number",
+                :hint => "Telephone or Mobile Number +(country)(area)(number)",
+                :input_html => { :style => 'width: 250px;'} %>
+
+    <%= f.input :email, :hint => "We will send you the voucher or confirmation to this email address",
+                :input_html => { :style => 'width: 250px;'} %>
+
+    <hr/>
+
+    <div style="margin-left: 140px; width: 100%; height:50px;">
+      <%= f.input :rooms, :label => "No of Rooms", :wrapper_html => {:class => "column_list"} %>
+      <%= f.input :adults, :label => "No of Adults", :wrapper_html => {:class => "column_list"} %>
+      <%= f.input :children, :label => "No of Children", :wrapper_html => {:class => "column_list"} %>
+    </div>
+
+
+    <hr/>
+
+    <%= f.input :arrival, :as => :string, :hint => "Click on textfield to display calendar. (yyyy-mm-dd)",
+                :input_html => { :class => 'datepicker', :style => 'width: 100px;'} %>
+
+    <%= f.input :departure, :as => :string, :hint => "Click on textfield to display calendar. (yyyy-mm-dd)",
+                :input_html => { :class => 'datepicker', :style => 'width: 100px;'} %>
+
+    <hr/>
+
+    <%= f.input :comment, :hint => "Any special considerations you want us to know?" %>
+
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :button, :label => "Make Booking Enquiry", :button_html => { :class => "button primary", :disable_with => 'Wait...' } %>
+  <% end %>
+
+
+<% end %>

@@ -1,0 +1,29 @@
+<div id="main">
+
+  <div class="entry">
+
+    <div class="entry-header">
+
+      <h2 class="title">Something went wrong.</h2>
+
+    </div>
+
+    <div class="entry-single">
+      <p>
+        Sorry, but this time its seems something have gone wrong. This is an application error
+        but we were notified of this issue.
+      </p>
+      <p>
+        If the matter is urgent, please feel free to <%=  link_to "contact us", contact_us_path %>.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<% if Rails.env != "production"  or admin_group? %>
+  <strong><%= @error_message %></strong>
+  <% @stacktrace.each do |line|  %>
+    <%=  line %><br/>
+  <% end %>
+<% end %>

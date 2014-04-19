@@ -1,0 +1,40 @@
+<div id="header-top">
+
+  <div class="container">
+
+    <p class="left">
+
+      <% if user_signed_in? %>
+        <%= current_user.email %> |
+
+        <% if admin_group? %>
+          <%= link_to "Admin", admin_dashboard_path, {:rel => "nofollow"} %> |
+        <% end %>
+
+        <%= link_to "Logout", destroy_user_session_path, {:rel => "nofollow"} %> |
+
+      <% else %>
+        <%= link_to "Login", new_user_session_path, {:rel => "nofollow"} %> |
+
+        <%= link_to "SignUp", new_user_registration_path, {:rel => "nofollow"} %> |
+
+        <%= link_to "Be a Partner", new_partner_registration_path, {:rel => "nofollow"} %> |
+
+      <% end %>
+
+      <%= link_to "Partner FAQ", "/docs/partner-v1.pdf", {:rel => "nofollow"} %> |
+
+      <%= link_to "Beta Test", beta_testing_path, {:rel => "nofollow"} %> |
+
+      <%= link_to "Privacy Policy", privacy_policy_path, {:rel => "nofollow"} %> |
+
+      <%= link_to "Contact Us", contact_us_path, {:rel => "nofollow"} %>
+
+      <%#= link_to "Map", fullmap_path, {:rel => "nofollow"} %>
+    </p>
+
+    <%= render :partial => "shared/search_form"  %>
+
+  </div>
+
+</div>

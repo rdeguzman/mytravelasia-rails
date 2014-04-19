@@ -1,0 +1,44 @@
+<% javascript('datatables-init') %>
+
+<h3>Bookings</h3>
+<hr/>
+
+<table class = "datatable">
+  <thead>
+    <tr>
+      <td></td>
+      <th>Date Lodged</th>
+      <th>Full Name</th>
+      <th>Partner</th>
+      <th>Arrival</th>
+      <th>Departure</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |b| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td></td>
+      <td><%= b.created_at.to_s(:full) %><br/><%= b.booking_type %></td>
+      <td nowrap>
+        <%= link_to b.full_name, admin_booking_path(b) %><br/>
+        <%= b.email %><br/>
+        <%= b.contact_no %><br/>
+        Adults:<%= b.adults %> Rooms:<%= b.rooms %>
+      </td>
+      <td>
+        <% if not b.poi.blank? %>
+          <%= b.poi.name %><br/>
+          <%= b.poi.country_name %>
+        <% else %>
+          <%= b.poi_id %>
+        <% end %>
+      </td>
+      <td nowrap><%= b.arrival %></td>
+      <td nowrap><%= b.departure %></td>
+      <td><%= link_to "Delete", admin_booking_path(b), :method => :delete, :confirm => "Are you sure?" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

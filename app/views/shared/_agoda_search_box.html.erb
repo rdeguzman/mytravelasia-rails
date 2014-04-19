@@ -1,0 +1,22 @@
+<div id="SearchBox"></div>
+<script src="http://ajaxsearch.partners.agoda.com/partners/SearchBox/Scripts/Agoda.SearchBoxV2.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var city_name = "<%= city %>";
+  var AgodaSearch = new AgodaSearchBox({
+    cid: 1438344,
+    filterCityName: city_name,
+    fixedCityName: true,
+    fixedCityNameVisible:true,
+    hotelID: '',
+    checkInDateBefore:3,
+    night:2,
+    language:1,
+    currencyCode: 'USD',
+    newWindow: true,
+    header: '',
+    footer: '',
+    style: 'CMSLanding',
+    Element: 'SearchBox'
+  });
+</script>

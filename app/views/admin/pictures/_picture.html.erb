@@ -1,0 +1,25 @@
+<li>
+
+  <p>
+    <%= link_to_picture(picture)%><br/>
+    <%= picture.image_file_name %>
+  </p>
+
+  <div>
+    <% if can? :manage, picture %>
+      <%= link_to "Edit", edit_admin_picture_path(picture),
+                  :id => "edit_#{picture.id}" %>
+      |
+      <%= link_to "Delete", admin_picture_path(picture.id),
+                  :method => :delete,
+                  :confirm => "Are you sure?",
+                  :id => "delete_#{picture.id}" %>
+      <br/>
+
+      <%= link_to "Make Default",
+                  admin_update_default_picture_path(picture.id),
+                  :id => "default_#{picture.id}" %>
+    <% end %>
+  </div>
+
+</li>

@@ -1,0 +1,32 @@
+<% stylesheet('pagination') %>
+<% javascript('datatables-init') %>
+
+<h3><%= @users.count %> Users</h3>
+<hr/>
+
+<table class = "datatable">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Last Sign In</th>
+      <th>Sign In Count</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |u| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= link_to u.email, user_path(u) %></td>
+      <td align="center"><%= u.role %></td>
+      <td>
+        <%= u.last_sign_in_at.to_s(:full) %><br/>
+        <%= time_ago_in_words u.last_sign_in_at %> ago
+      </td>
+      <td align="right"><%= u.sign_in_count %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @users, :class => "flickr_pagination" %>

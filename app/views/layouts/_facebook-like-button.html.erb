@@ -1,0 +1,7 @@
+<% facebook_width ||= 300 %>
+
+<% if (params[:controller] == 'pois' or params[:controller] == 'countries') and params[:action] == 'show' %>
+  <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-width="<%= facebook_width %>" data-show-faces="false"></div>
+<% else %>
+  <div class="fb-like" data-href="www.mytravel-asia.com" data-send="false" data-width="<%= facebook_width %>" data-show-faces="false"></div>
+<% end %>

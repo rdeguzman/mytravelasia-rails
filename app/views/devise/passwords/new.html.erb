@@ -1,0 +1,21 @@
+<% stylesheet('formtastic') %>
+<% stylesheet('formtastic_changes') %>
+
+<div class="boxed">
+
+  <%= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+    <h4>Forgot your password?</h4>
+
+    <%= f.inputs do %>
+
+      <%= f.input :email %>
+
+    <% end %>
+
+    <%= f.actions do %>
+      <%= f.submit "Send me reset password instructions", :class => "button primary" %>
+      <%= link_to "Cancel", :back, :class => "button" %>
+    <% end %>
+
+  <% end %>
+</div>

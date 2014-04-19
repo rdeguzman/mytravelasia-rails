@@ -1,0 +1,6 @@
+<%= semantic_fields_for :poi do |f| %>
+  <%= f.input :destination_id,
+              :as => :select,
+              :collection => @destinations,
+              :include_blank => false %>
+<% end %>

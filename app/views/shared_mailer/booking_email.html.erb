@@ -1,0 +1,58 @@
+<p>Hi,</p>
+
+<p>
+You have a booking reservation enquiry from <strong><%= @booking.full_name.titleize %></strong>.
+This enquiry was sent from one of our MyTravelAsia Mobile App. Please reply directly to
+<strong><%= @booking.first_name %>'s</strong> email address: <strong><%= @booking.email %></strong>
+</p>
+
+<p>Also please BCC: support@mytravel-asia.com for any correspondence!</p>
+
+<p>
+Regards,<br/>
+MyTravelAsia Support Team
+</p>
+
+========================================================<br/>
+
+<p>
+  <strong>Name: <%= @booking.full_name.titleize %></strong><br/>
+  <strong>Booking ID:</strong> <%= @booking.id %><br/>
+  <strong>Email:</strong> <%= @booking.email %><br/>
+  <strong>Contact:</strong> <%= @booking.contact_no %><br/>
+  <strong>Time: <%= @booking.created_at.to_s(:full) %></strong><br/>
+</p>
+
+<p>
+  <strong><%= link_to @poi.name, "http://www.mytravel-asia.com/pois/#{@poi.id}" %></strong>
+</p>
+
+<p>
+  <strong>No Of Rooms:</strong>
+  <%= @booking.rooms %>
+</p>
+
+<p>
+  <strong>Adults:</strong>
+  <%= @booking.adults %>
+</p>
+
+<p>
+  <strong>Children:</strong>
+  <%= @booking.children %>
+</p>
+
+<p>
+  <strong>Arrival:</strong>
+  <%= @booking.arrival %>
+</p>
+
+<p>
+  <strong>Departure:</strong>
+  <%= @booking.departure %>
+</p>
+
+<p>
+  <strong>Comment:</strong><br/>
+  <%= @booking.comment %>
+</p>

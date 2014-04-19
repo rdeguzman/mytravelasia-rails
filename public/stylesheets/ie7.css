@@ -1,0 +1,5 @@
+/* Misc */
+hr { margin-bottom: 10px; }
+#sliderNav { bottom: 40px; }
+#comments .comments-list .comment { padding: 20px 0 0; }
+#main .collapsible .zoom.align-right a span, #main .collapsible .zoom.align-left a span { margin-bottom: 0; }

@@ -1,0 +1,44 @@
+<div class="organizer-container">
+
+  <ul>
+    <% pois.each do |p| %>
+      <li class="poi-content">
+
+        <%= render :partial => 'pois/medium_photo', :locals => {:poi => p} %>
+
+        <h4 class="title"><%= truncate_text(p.name, 27) %></h4>
+
+        <%= render :partial => 'shared/destination_name', :locals => {:poi => p} %>
+
+        <p><%= truncate_text(p.description, 130) %></p>
+
+        <%= link_to "Read More", poi_path(p), :class => "button primary single-button" %>
+
+      </li>
+    <% end %>
+
+  </ul>
+
+</div>
+
+<ul class="organizer-nav">
+
+  <% pois.each do |p| %>
+    <li class="nav-button">
+      <div class="content">
+        <%= render :partial => 'pois/thumbnail', :locals => {:poi => p} %>
+
+        <%= link_to content_tag(:h6, truncate_text(p.name, 35)), poi_path(p), :class => "title" %>
+
+        <%= render :partial => 'shared/destination_name', :locals => {:poi => p} %>
+
+        <ul class="links">
+          <li><%= p.total_views %> views <span class="separator">|</span></li>
+          <li><%= link_to "Read More", poi_path(p) %></li>
+        </ul>
+      </div>
+
+    </li>
+  <% end %>
+
+</ul>

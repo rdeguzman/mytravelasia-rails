@@ -1,0 +1,47 @@
+<div class="entry">
+
+  <div class="entry-header special">
+
+    <h2 class="exclusive-title">
+      <%= link_to @exclusive.name, poi_path(@exclusive) %></h2>
+  </div>
+
+  <% unless @exclusive.description.blank? %>
+    <div class="entry-single">
+
+      <% unless @exclusive.pictures.blank? %>
+        <div style="text-align: center;">
+          <%= link_to_picture(@exclusive.pictures.first, { :style_image => :pagesize,
+                                                           :style_link_to => :original,
+                                                           :class => 'entry-image' })%>
+          <span style="display: none; "></span>
+        </div>
+      <% end %>
+
+      <%= simple_format @exclusive.description %>
+
+    </div>
+  <% end %>
+
+  <div class="entry-footer">
+
+    <dl class="horizontal"/>
+
+    <dt>Last updated on </dt>
+    <dd>
+      <%= if admin_group? then "#{@exclusive.updated_at.to_s(:full)} #{time_ago_in_words @exclusive.updated_at} ago"
+          else @exclusive.updated_at.to_s(:small) end %>
+      <span class="separator">|</span>
+    </dd>
+
+    <dt><%= @exclusive.total_views %> </dt>
+    <dd>views <span class="separator">|</span></dd>
+
+    <% unless @exclusive.last_viewed.blank? then %>
+      <dt>Last viewed </dt>
+      <dd><em><%= time_ago_in_words @exclusive.last_viewed %> ago</em><br/></dd>
+    <% end %>
+
+  </div>
+
+</div>

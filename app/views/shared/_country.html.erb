@@ -1,0 +1,49 @@
+<% if can? :delete, @country %>
+  <div class="action_items buttons">
+    <%= link_to "Delete", admin_country_path, :confirm => "Are you sure?", :method => :delete %>
+  </div>
+<% end %>
+
+<hr/>
+
+<h2>Description</h2>
+<p><%= @country.description %></p>
+
+<% if can? :update, @country %>
+  <div class="action_items buttons">
+    
+    <%= link_to "Edit Main Description", edit_admin_country_path(@destination) %>
+    
+    <% if has_content? @country.description %>
+      <%= link_to "Add Another Description", new_admin_description_path(:parent_id => @country.id, :table_name => 'country') %>
+    <% end %>
+    
+  </div>
+  <div class="clear"></div>
+<% end %>
+
+<hr/>
+
+<h2>Destinations in <%= @country.country_name %> (<%= @destinations.count %>)</h2>
+
+<% @destinations.in_groups(5, false) do |group| %>
+  <ul class="column_list">
+    <%= render :partial => "destinations/destination", :collection => group %>
+  </ul>
+<% end %>
+
+<hr/>
+
+<%= render :partial => 'shared/descriptions' %>
+
+<hr/>
+<h2>Points Of Interest in <%= @country.country_name %> (Recently Updated)</h2>
+
+<div class="map_container">  
+  <div id="mapdiv" style="width:635px; height:250px; float:left;"></div>
+  <%= render :partial => 'shared/filter', :locals => {:controller_name => 'countries', :object_id => @country } %>
+</div>
+
+<%= render :partial => "shared/map_list" %>
+
+<%= render :partial => 'shared/poi_list' %>

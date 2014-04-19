@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title><%= content_for?(:title) ? yield(:title) : "MyTravel-Asia" %></title>
+  <meta name="keywords" content="<%= content_for?(:meta_keywords) ? yield(:meta_keywords) : APP_CONFIG[:meta_keywords] %>">
+  <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : APP_CONFIG[:meta_description] %>">
+
+  <style>
+    body{
+      background-color:#333333;
+    }
+  </style>
+
+  <%= render 'shared/analytics' %>
+</head>
+<body>
+  <%= render :partial => 'shared/ads_google' %>
+</body>
+</html>
+

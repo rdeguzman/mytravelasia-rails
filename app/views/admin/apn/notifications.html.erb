@@ -1,0 +1,48 @@
+<% stylesheet('datatables') %>
+<% stylesheet('pagination') %>
+<% javascript('jquery.datatables') %>
+<% javascript('datatables-init') %>
+
+<% if admin_group? %>
+  <%= link_to "Create Notification", admin_new_apn_path, :class => "button active" %> <br/> <br/>
+<% end %>
+
+<table class = "datatable" id="allowed_users">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>device id</td>
+      <th>errors nb</th>
+      <th>Sound</th>
+      <th>Alert</th>
+      <th>Length</th>
+      <th>Badge</th>
+      <th>SentAt</th>
+      <th>CreatedAt</th>
+      <th>UpdatedAt</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notifications.each do |n| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= n.id %></td>
+        <td><%= n.device_id %></td>
+        <td><%= n.errors_nb %></td>
+        <td><%= image_tag "#{n.sound}.png" %></td>
+        <td width="200"><%= n.alert %></td>
+        <td align="right"><%= n.alert.length %></td>
+        <td align="right"><%= n.badge %></td>
+        <td><%= n.sent_at ? n.sent_at.to_s(:full) : "" %></td>
+        <td><%= n.created_at.to_s(:full) %></td>
+        <td><%= n.updated_at.to_s(:full) %></td>
+        <td>
+          <%= link_to "Delete", admin_destroy_apn_path(n), :method => :delete, :confirm => "Are you sure?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @notifications, :class => "flickr_pagination" %>

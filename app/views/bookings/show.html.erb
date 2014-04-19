@@ -1,0 +1,39 @@
+<div class="entry single">
+
+  <div class="entry-header">
+
+    <h2 class="title">Booking enquiry confirmation.</h2>
+
+    <hr class="full"/>
+
+    <p class="meta">
+      <h6 style="margin-bottom: 0px;"><%= link_to @poi.name, poi_path(@poi) %></h6>
+
+      <%= @poi.full_address %><br/>
+
+      <% unless @poi.tel_no.blank? %>
+        <%= @poi.tel_no %><br/>
+      <% end %>
+
+      <% unless @poi.web_url.blank? %>
+        <%= create_web_url_links @poi.web_url %><br/>
+      <% end %>
+
+      <% unless @poi.email.blank? %>
+        <%= create_email_links @poi.email %><br/>
+      <% end %>
+    </p>
+
+  </div>
+
+  <div class="entry-content">
+
+    <p>Thank you for your inquiry.</p>
+
+    <p>We will get back to you shortly, we usually respond within 24 hours via email at the very least.</p>
+
+    <p>If the matter is urgent, please do <%= link_to "contact us", contact_us_path %></p>
+
+  </div>
+
+</div>

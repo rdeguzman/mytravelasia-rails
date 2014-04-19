@@ -1,0 +1,55 @@
+<div class="entry single">
+
+  <div class="entry-header">
+
+    <h2 class="title"><%= @booking.full_name.titleize %></h2>
+
+    <hr class="full"/>
+
+    <p class="meta">
+      Booking ID: <%= @booking.id %><br/>
+      Booking Type: <%= @booking.booking_type %><br/>
+      Email: <%= @booking.email %><br/>
+      Contact: <%= @booking.contact_no %>
+    </p>
+
+  </div>
+
+  <div class="entry-content">
+    <p>
+      <strong><%= link_to @poi.name, poi_path(@poi) %></strong>
+    </p>
+
+    <p>
+      <strong>No Of Rooms:</strong>
+      <%= @booking.rooms %>
+    </p>
+
+    <p>
+      <strong>Adults:</strong>
+      <%= @booking.adults %>
+    </p>
+
+    <p>
+      <strong>Children:</strong>
+      <%= @booking.children %>
+    </p>
+
+    <p>
+      <strong>Arrival:</strong>
+      <%= @booking.arrival %>
+    </p>
+
+    <p>
+      <strong>Departure:</strong>
+      <%= @booking.departure %>
+    </p>
+
+    <p>
+      <strong>Comment:</strong><br/>
+      <%= @booking.comment %>
+    </p>
+
+  </div>
+
+</div>

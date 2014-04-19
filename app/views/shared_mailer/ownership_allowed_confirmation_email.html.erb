@@ -1,0 +1,23 @@
+Hi <%= @user.first_name %>,
+
+<% if @allowed %>
+  <p>Congratulations! Your request for management of <%= link_to @poi.name, poi_url(@poi.id) %> was approved.</p>
+
+  <p>To manage the record, update the content and pictures, please login <a href="http://www.mytravel-asia.com/users/sign_in">http://www.mytravel-asia.com/users/sign_in</a></p>
+
+  <p>
+    If there's anything we can do to help or you have questions on how to manage your record, simply drop us an email.
+  </p>
+
+<% else %>
+
+  <p>Unfortunately, your request for management of <%= link_to @poi.name, poi_url(@poi.id) %> was rejected.</p>
+
+  <p>To discuss your options, please do <%= link_to "contact us", contact_us_url %>.</p>
+
+<% end %>
+
+<p>
+Cheers,<br/>
+MyTravel-Asia Team
+</p>

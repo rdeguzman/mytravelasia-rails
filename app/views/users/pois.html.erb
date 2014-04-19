@@ -1,0 +1,32 @@
+<% javascript('jquery.datatables') %>
+<% javascript('datatables-init') %>
+<% stylesheet('datatables') %>
+
+<h3>My Listing</h3>
+<hr/>
+
+<table class = "datatable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Approval Status</th>
+      <th>User Allowed</th>
+      <th>User Allowed By</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @privileges.each do |privilege| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= privilege.poi.id %></td>
+      <td><%= link_to privilege.poi.name, poi_path(:id => privilege.poi.id) %></td>
+      <td align="center"><%= privilege.poi.approved %></td>
+      <td align="center"><%= privilege.allowed %></td>
+      <td><%= privilege.allowed_by %></td>
+      <td><%= privilege.updated_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

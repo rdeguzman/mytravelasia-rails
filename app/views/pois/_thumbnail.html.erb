@@ -1,0 +1,5 @@
+<% if poi.has_photos? and not poi.picture_thumb_path.blank? %>
+  <%= image_tag poi.picture_thumb_path, :size => "70x70", :class => "entry-title-image" %>
+<% else %>
+  <%= image_tag "no-image.png", :size => "70x70", :class => "entry-title-image" %>
+<% end %>

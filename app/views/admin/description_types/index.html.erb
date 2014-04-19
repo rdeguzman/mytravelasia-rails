@@ -1,0 +1,15 @@
+<% title "Description Types" %>
+
+<div class="action_items buttons">
+  <%= link_to "Add Description Type", new_admin_description_type_path %>
+</div>
+
+<div class="clear"></div>
+ 
+<ul>
+<% @description_types.each do |description| %>
+  <li>
+    <%= link_to description.title, edit_admin_description_type_path(description) %>
+  </li>
+<% end %>
+</ul>

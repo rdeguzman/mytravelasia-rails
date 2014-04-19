@@ -1,0 +1,47 @@
+<% title 'Edit Caption' %>
+
+<%= render "shared/error_messages", :target => @picture %>
+
+<div class="entry">
+  <div class="entry-header">
+  </div>
+
+  <div class="entry-content">
+
+    <div style="text-align: center;">
+
+      <p>
+        <%= image_tag @picture.image.url(:thumb), :class => 'entry-image' %><br/>
+        thumb: <%= @picture.image.styles[:thumb].geometry %>
+      </p>
+
+      <p>
+        <%= image_tag @picture.image.url(:pagesize), :class => 'entry-image' %><br/>
+        pagesize: <%= @picture.image.styles[:pagesize].geometry %>
+      </p>
+
+    </div>
+
+    <%= semantic_form_for [:admin, @picture] do |f| %>
+      <%= f.inputs do %>
+
+        <%= f.input :caption_title,
+                    :label => "Title" %>
+
+        <%= f.input :caption_description,
+                    :label => "Description" %>
+
+        <%= f.input :credits_to,
+                    :label => "Credits To" %>
+
+        <%= f.input :credits_url,
+                    :label => "Credits URL" %>
+      <% end %>
+
+      <%= render :partial => "shared/button", :locals => {:f => f} %>
+
+    <% end %>
+  </div>
+
+
+</div>

@@ -1,0 +1,5 @@
+<% if poi.destination_name == poi.country_name %>
+  <p class="meta"><%= poi.country_name %></p>
+<% else %>
+  <p class="meta"><%= poi.destination_name %>, <%= poi.country_name %></p>
+<% end%>

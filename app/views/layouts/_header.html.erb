@@ -1,0 +1,37 @@
+<div class="span-24 last top-header">
+  <ul class="horizontal_links align-right">
+    <li><%= link_to "Home", root_path %></li>
+    <li>About Us</li>
+    <li>Contact Us</li>
+
+    <% if not user_signed_in? %>
+      <li><%= link_to "Log In", new_user_session_path %></li>
+    <% else %>
+      <li>My Favorites</li>
+      <li><%= link_to "Log out", destroy_user_session_path %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="span-24 header">
+  <div class="span-10 logo">
+    <%= link_to image_tag('tsa_logo_web.png'), root_path %>
+  </div>
+  
+  <div class="span-12">
+    <%= render :partial => 'shared/search_form' %>
+  </div>
+  
+  <div class="span-2 last">
+    
+    <%= default_user_image %><br/>
+    
+    <% if user_signed_in? %>
+      <%= current_user.role %>
+    <% else %>
+      <p><%= link_to "Sign Up", new_user_registration_path %></p>
+    <% end %>
+    
+  </div>
+
+</div>

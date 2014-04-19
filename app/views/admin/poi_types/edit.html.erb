@@ -1,0 +1,8 @@
+<% title "Edit Poi Type" %>
+
+<%= render :partial => 'form' %>
+
+<hr/>
+
+<%= link_to "Delete", admin_poi_type_path, :confirm => "Are you sure?", :method => :delete, :class => "button" %>
+Are you sure you want to delete <%= @poi_type.poi_type_name %>?

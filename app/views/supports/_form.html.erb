@@ -1,0 +1,22 @@
+<% stylesheet('formtastic') %>
+<% stylesheet('formtastic_changes') %>
+<% stylesheet('recaptcha') %>
+
+<%= semantic_form_for @support do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :contact, :hint => "(+country)(area)(number). Mobile number preferrred. Just in case we need to contact you if it is urgent." %>
+    <%= f.input :email %>
+
+    <%= f.input :description, :input_html => { :rows => 20 } %>
+
+  <% end %>
+
+  <%= recaptcha_tags %>
+
+  <%= render :partial => 'shared/button', :locals => {:f => f, :label => 'Submit Feedback'} %>
+
+<% end %>
+
+
+

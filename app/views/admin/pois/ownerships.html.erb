@@ -1,0 +1,57 @@
+<% stylesheet('datatables') %>
+<% stylesheet('pagination') %>
+<% javascript('jquery.datatables') %>
+<% javascript('datatables-init') %>
+
+<table class = "datatable" id="allowed_users">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <th>Poi</th>
+      <th>User</th>
+      <th>Approval</th>
+      <th>Allowed</th>
+      <th>Allowed By</th>
+      <th>Updated By</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @privileges.each do |privilege| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= privilege.id %></td>
+        <td>
+          <% if privilege.poi %>
+            <%= link_to privilege.poi.name, poi_path(privilege.poi) %>
+          <% else %>
+            poi_id: <%= privilege.poi_id %> deleted
+          <% end %>
+        </td>
+        <td nowrap>
+          <% if privilege.user %>
+            <%= link_to truncate(privilege.user.full_name, :length => 30), user_path(:id => privilege.user.id) %><br/>
+            <%= privilege.user.email %>
+          <% else %>
+            user_id: <%= privilege.user_id %> deleted
+          <% end %>
+        </td>
+        <td align="center">
+          <% if privilege.poi %>
+            <%= image_tag "#{privilege.poi.approved}.png" %>
+          <% end %>
+        </td>
+        <td align="center"><%= image_tag "#{privilege.allowed}.png" %></td>
+        <td><%= privilege.allowed_by %></td>
+        <td nowrap><%= privilege.updated_at.to_s(:full) %></td>
+        <td>
+          <% if admin_group? %>
+            <%= link_to "Delete", admin_destroy_ownership_path(privilege), :method => :delete, :confirm => "Are you sure?" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @privileges, :class => "flickr_pagination" %>

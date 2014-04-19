@@ -1,0 +1,24 @@
+development:
+  port: 9314
+  morphology: stem_en
+  bin_path: "/usr/local/bin"
+  log: "/srv/rails/mytravel-asia/shared/sphinx/development/searchd.log"
+  query_log: "/srv/rails/mytravel-asia/shared/sphinx/development/searchd.query.log"
+  pid_file: "/srv/rails/mytravel-asia/shared/sphinx/development/searchd.pid"
+  searchd_file_path: "/srv/rails/mytravel-asia/shared/sphinx/development"
+test:
+  port: 9315
+  morphology: stem_en
+  bin_path: "/usr/local/bin"
+  log: "/srv/rails/mytravel-asia/shared/sphinx/test/searchd.log"
+  query_log: "/srv/rails/mytravel-asia/shared/sphinx/test/searchd.query.log"
+  pid_file: "/srv/rails/mytravel-asia/shared/sphinx/test/searchd.pid"
+  searchd_file_path: "/srv/rails/mytravel-asia/shared/sphinx/test"
+production:
+  port: 9314
+  morphology: stem_en
+  bin_path: "/usr/local/sphinx/bin"
+  log: "/srv/rails/mytravel-asia/shared/sphinx/searchd.log"
+  query_log: "/srv/rails/mytravel-asia/shared/sphinx/searchd.query.log"
+  pid_file: "/srv/rails/mytravel-asia/shared/sphinx/searchd.pid"
+  searchd_file_path: "/srv/rails/mytravel-asia/shared/sphinx"

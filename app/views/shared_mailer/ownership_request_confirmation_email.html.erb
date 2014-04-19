@@ -1,0 +1,13 @@
+Hi <%= @user.first_name %>,
+
+<p>We have received your request for management of <%= link_to @poi.name, poi_url(@poi.id) %></p>
+
+<p>
+  Our team will evaluate your request and you will receive a confirmation by email once the request is approved.
+  Once approved, you should be able to manage the record, update the content and pictures.
+</p>
+
+<p>
+Cheers,<br/>
+MyTravel-Asia Team
+</p>

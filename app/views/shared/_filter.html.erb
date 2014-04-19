@@ -1,0 +1,20 @@
+<div id="filters">
+  <ul>
+    <li class="header"><b>Sort by:</b></li>
+    <li>
+      Name:
+      <%= link_to "(A-Z)", url_for(:controller => controller_name, :action => 'show', :id => object_id, :order => "name ASC"), :rel => "nofollow" %>
+      <%= link_to "(Z-A)", url_for(:controller => controller_name, :action => 'show', :id => object_id, :order => "name DESC"), :rel => "nofollow" %>
+    </li>
+    <li>
+      Price:
+      <%= link_to "(low-high)", url_for(:controller => controller_name, :action => 'show', :id => object_id, :order => "min_rate ASC"), :rel => "nofollow" %>
+      <%= link_to "(high-low)", url_for(:controller => controller_name, :action => 'show', :id => object_id, :order => "min_rate DESC"), :rel => "nofollow" %>
+    </li>
+    <li>
+      Ratings:
+      <%= link_to "(low-high)", url_for(:controller => controller_name, :action => 'show', :id => object_id, :order => "total_ratings ASC"), :rel => "nofollow" %>
+      <%= link_to "(high-low)", url_for(:controller => controller_name, :action => 'show', :id => object_id, :order => "total_ratings DESC"), :rel => "nofollow" %>
+    </li>
+  </ul>
+</div>

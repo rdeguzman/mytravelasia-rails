@@ -1,0 +1,19 @@
+<% title 'Edit Caption' %>
+
+<%= render "shared/error_messages", :target => @web_photo %>
+
+<p style="text-align:center"><%= image_tag @web_photo.full_path %></p>
+
+<%= semantic_form_for [:admin, @web_photo] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :caption_title %>
+    <%= f.input :caption_description %>
+    <%= f.input :credits_to %>
+    <%= f.input :credits_url %>
+  <% end %>
+  
+  <%= f.buttons do %>
+    <%= f.commit_button %>
+  <% end %>
+  
+<% end %>

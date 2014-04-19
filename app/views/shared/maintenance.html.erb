@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link id="favicon" rel="shortcut icon" type="image/png" href="/favicon/favicon_32x32.ico" />
+  <title>MyTravel-Asia</title>
+  <meta name="robots" content="noindex">
+
+  <link href="/stylesheets/reset.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/custom.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div id="header">
+
+  <div class="container">
+
+    <h1 id="logo">
+      <a href="/"><img alt="Logo" src="/images/logo.png"></a>
+    </h1>
+
+  </div>
+
+</div>
+
+<div id="content">
+
+	<div class="container">
+
+		<div id="main">
+      <h1>System Maintenance</h1>
+
+      <hr/>
+
+      <p>We are currently offline for <%= reason ? reason : 'maintenance' %> as of <%= Time.now.strftime('%a %b %d %Y %I:%M %p') %> Australia/Melbourne Time.</p>
+      <p>Sorry for the inconvenience. We will be back <%= deadline ? "by #{deadline}" : 'shortly' %>.</p>
+
+
+      <p><b>So why are you here?</b></p>
+
+      <ul>
+        <li>
+          Commonly hated and misunderstood, this is not an error page but an indication that we are upgrading our site.
+          Nothing to do on your part, this will be gone shortly.
+        </li>
+      </ul>
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
+

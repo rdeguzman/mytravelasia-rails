@@ -1,0 +1,13 @@
+<%= render "shared/error_messages", :target => @country %>
+
+<%= semantic_form_for [:admin, @country] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :country_name, :label => "Country", :hint => "Do not abbreviate. i.e United States not US" %>
+    <%= f.input :country_code, :label => "Country Code", :hint => "Country ISO Code two letters only." %>
+    <%= f.input :description %>
+  <% end %>
+  
+  <%= render :partial => 'shared/button', :locals => {:f => f} %>
+
+<% end %>
+

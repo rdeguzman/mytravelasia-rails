@@ -1,0 +1,23 @@
+<div class="entry">
+
+  <div class="entry-header">
+    <h4 class="title">My Profile</h4>
+    <%= link_to "Edit Profile", edit_user_path(@user), :class => "button" %>
+  </div>
+
+  <div class="entry-content">
+    <p>Email: <%= @user.email %></p>
+    <p>Full Name: <%= @user.full_name %></p>
+    <p>Mobile: <%= @user.mobile_no %></p>
+    <p>Tel: <%= @user.tel_no %></p>
+    <p>Fax: <%= @user.fax_no %></p>
+    <p>Address: <%= @user.address %></p>
+    <p>Country: <%= if @user.country then @user.country.country_name end %></p>
+
+    <% if admin_group? %>
+      <p>Role: <%= @user.role %></p>
+    <% end %>
+
+  </div>
+
+</div>

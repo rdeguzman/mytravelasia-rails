@@ -1,0 +1,150 @@
+<% javascript(APP_CONFIG[:google_maps_url]) %>
+
+<script language="javascript">
+var currentInfoWindow = null;
+
+var latlong = new google.maps.LatLng(11.532770, 122.395274);
+
+var myOptions = {
+  zoom: 5,
+  center: latlong,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+
+var map = new google.maps.Map(document.getElementById("mapdiv"), myOptions);
+var markers = [];
+var zoomMax = 22;
+var bounds = new google.maps.LatLngBounds();
+var info_window = new google.maps.InfoWindow({ maxWidth: 250});
+
+<% gif_counter = 1 %>
+
+<% @pois.each do |poi| %>
+  
+  <% if poi and poi.has_map? %>
+    
+    var icon = "<%= marker_image_default_path(gif_counter) %>";
+
+    var _latlong = new google.maps.LatLng(<%= poi.latitude %>, <%= poi.longitude %>);
+
+    var _content = "<div id='baloon_<%= poi.id %>' class='baloon'>";
+
+    <% if poi.has_photos? %>
+    _content = _content + '<div style="float:left;"><%= image_tag picture_path(poi.default_picture(:thumb_big, :picture_thumb_path)) %></div>';
+    <% end %>
+
+    _content = _content + "<div style='float:left;'>";
+    _content = _content + '<b><%= escape_javascript poi.name %></b><br/><%= escape_javascript poi.address %>';
+    _content = _content + "</div>";
+    _content = _content + "</div>";
+
+    marker = createMarker(<%= poi.id %>, '<%= escape_javascript poi.name %>', _content, _latlong, icon);
+    markers.push(marker);
+
+    bounds.extend(_latlong);
+    map.fitBounds(bounds);
+  
+  <% end %>
+
+  <% gif_counter = gif_counter + 1 %>
+<% end %>
+
+function createMarker(poi_id, marker_title, content, latlong, marker_image){
+  var marker;
+
+  if(marker_image != 'undefined')
+  {
+    marker = new google.maps.Marker({
+      position: latlong,
+      map: map,
+      icon: marker_image,
+      title: marker_title
+      //,animation: google.maps.Animation.DROP
+    });
+  }
+  else
+  {
+    marker = new google.maps.Marker({
+      position: latlong,
+      map: map,
+      title: marker_title
+      //,animation: google.maps.Animation.DROP
+    });
+  }
+
+  marker.set("id", poi_id);
+
+  var fn = google.maps.event.addListener(marker, 'click', function(){
+    info_window.setContent(content);
+    info_window.open(map, marker);
+  });
+
+  return marker;
+}
+
+function getMarker(marker_id)
+{
+  var marker = null;
+
+  for (var i = 0; i < markers.length; i++) {
+    if (markers[i].id === marker_id) {
+      marker = markers[i];
+    }
+  }
+
+  return marker;
+}
+
+function showMarkerByID(marker_id)
+{
+  var marker = getMarker(marker_id);
+
+  if(marker)
+  {
+    showMarker(marker);
+    return true;
+  }
+  else
+    return false;
+}
+
+
+function showMarker(marker)
+{
+  google.maps.event.trigger(marker, "click");
+}
+
+function zoomToMarkerByID(marker_id, zoom)
+{
+  var marker = getMarker(marker_id);
+  if (marker) {
+    zoomToMarker(marker, zoom);
+    showMarker(marker);
+  }
+}
+
+function zoomToMarker(marker, zoom)
+{
+  map.setCenter(marker.getPosition());
+
+  var scaledZoom;
+
+  //if no zoom is given, we zoom slowly
+  if(typeof zoom == 'undefined')
+  {
+    if(map.getZoom() <= zoomMax/2)
+      scaledZoom = map.getZoom() * 2;
+    else if(map.getZoom() < zoomMax)
+      scaledZoom = map.getZoom() + 2;
+  }
+  else
+  {
+    if(map.getZoom() < zoom)
+      scaledZoom = zoom;
+    else
+      scaledZoom = map.getZoom() + 2;
+  }
+
+  map.setZoom(scaledZoom);
+}
+</script>

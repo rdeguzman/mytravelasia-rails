@@ -1,0 +1,46 @@
+
+
+<div class="entry">
+
+  <div class="entry-header">
+
+    <h3 class="title"><%= link_to poi.name, poi_path(poi), :id => entry_title %></h3>
+
+    <%= render :partial => 'shared/destination_name', :locals => {:poi => poi} %>
+
+    <% unless entry_title.blank? %>
+      <%= link_to "More #{entry_title.pluralize}", current_uri(entry_title), :class => "button primary single-button" %>
+    <% else %>
+      <%= link_to "Read More", poi_path(poi), :class => "button primary single-button" %>
+    <% end %>
+
+  </div><!-- end .entry-header -->
+
+  <div class="entry-content">
+
+    <div style="float:left;">
+      <%= render :partial => 'pois/medium_photo', :locals => {:poi => poi} %>
+    </div>
+
+    <div style="float:left; width:385px; padding-left: 5px;">
+      <div><%= simple_format truncate_text(poi.description, 500) %></div>
+
+      <hr />
+
+      <ul class="entry-links">
+        <li>
+          <strong>Last updated on</strong>
+          <%= poi.updated_at.to_s(:small) %>
+          <span class="separator">|</span>
+        </li>
+        <li>
+          <%= poi.total_views %> <strong>views</strong>
+          <span class="separator">|</span>
+        </li>
+        <li><em>viewed <%= time_ago_in_words poi.viewed_at %> ago</em></li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

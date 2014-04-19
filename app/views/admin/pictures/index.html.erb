@@ -1,0 +1,76 @@
+<%= render :partial => 'shared/breadcrumb' %>
+
+<div class="entry">
+  <div class="entry-header">
+    <h4 class="title">Browse and Upload Photos</h4>
+
+    <% if simple_upload_form? %>
+      <p class="meta">
+        <em>
+          If you want to see the Browse flash button above, click on the
+          <%= link_to "Flash Uploader", admin_pictures_path(:poi_id => @poi.id) %>
+        </em>
+      </p>
+    <% else %>
+      <p class="meta">
+        <em>
+          Cannot see the "Upload" button below, please install Adobe Flash or use the
+          <%= link_to "Simple Upload Form", admin_pictures_path(:poi_id => @poi.id, :simple => 1) %>
+        </em>
+      </p>
+    <% end %>
+
+    <%= link_to "Cancel", :back, :class => "button" %>
+
+  </div>
+
+  <div class="entry-content">
+    <%= form_for [:admin, Picture.new(:poi_id => @poi.id)], :html => {:multipart => true } do |f| %>
+
+      <% if simple_upload_form? %>
+        <%= f.file_field :image, :class => "button" %>
+        <%= f.submit 'Upload', :class => "button primary" %>
+      <% else %>
+        <%= f.file_field :image, :class => "button" %>
+        <%= render :partial => "uploadify" %>
+      <% end %>
+
+      <%= f.hidden_field :poi_id, "value" => @poi.id %>
+
+    <% end %>
+
+  </div>
+
+</div>
+
+<div class="entry">
+
+  <div class="entry-header">
+
+    <h2 class="title"><%= @poi.name %></h2>
+
+    <p class="meta">
+      <strong>Default Photo:</strong><br/>
+
+      <% if @poi.has_photos? %>
+         <%= image_tag @poi.picture_thumb_path %>
+      <% end %>
+    </p>
+
+    <%= link_to "View Poi", poi_path(@poi), :class => "button" %>
+
+  </div>
+
+  <div class="entry-content">
+    <h4 id="picture_count"><%= pluralize(@poi.pictures.size, 'Picture') %></h4>
+
+    <ul class="admin_thumbs">
+      <% @pictures.each do |picture| %>
+        <%= render :partial => 'admin/pictures/picture', :locals => {:picture => picture} %>
+      <% end %>
+    </ul>
+
+  </div>
+
+</div>
+

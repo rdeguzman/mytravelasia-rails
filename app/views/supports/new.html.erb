@@ -1,0 +1,31 @@
+<div class="entry">
+
+  <div class="entry-header">
+    <h3 class="title">Contact Us</h3>
+  </div>
+
+  <div class="entry-content">
+    <%= render :partial => 'supports/contact_us' %>
+
+    For general enquiries, it is best to reach us via email
+    at <a href="mailto:info@mytravel-asia.com">info@mytravel-asia.com</a>
+    or you use the feedback form below.
+  </div>
+</div>
+
+<div id="feedback" class="collapsible-box-content boxed clearfix">
+
+  <h6 class="list-title">Feedback</h6>
+  <span class="collapse-trigger">
+    <img alt="Collapse-button-up" src="/images/collapse-button-up.png?1315729171">
+  </span>
+
+  <div class="clear"></div>
+
+  <div class="content">
+
+    <hr class="full"/>
+
+    <%= render 'form' %>
+  </div>
+</div>

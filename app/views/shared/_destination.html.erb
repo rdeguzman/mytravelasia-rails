@@ -1,0 +1,38 @@
+<% title "#{@destination.destination_name}" %>
+<% meta_keywords "#{@destination.destination_name} #{APP_CONFIG[:meta_keywords]}" %>
+<% meta_description "#{@destination.destination_name} #{APP_CONFIG[:meta_description]} #{APP_CONFIG[:meta_keywords].pluralize} in #{@destination.destination_name}" %>
+
+<% if can? :delete, @destination %>
+  <%= link_to "Delete", admin_destination_path, :confirm => "Are you sure?", :method => :delete, :class => "button danger" %>
+<% end %>
+
+<% if can? :update, @destination %>
+  <%= link_to "Edit Destination", edit_admin_destination_path(@destination), :class => "button primary" %>
+
+  <% if has_content? @destination.description %>
+    <%= link_to "Add Another Description", new_admin_description_path(:parent_id => @destination.id, :table_name => 'destination') %>
+  <% end %>
+<% end %>
+
+<% content_for(:list_title) do %>
+  What's in <%= @destination.destination_name %>?
+<% end %>
+
+<% content_for(:filters) do %>
+  <%= render :partial => 'shared/filter', :locals => {:controller_name => 'destinations', :object_id => @destination } %>
+<% end %>
+
+<%= render :partial => 'shared/poi_list' %>
+
+<%= render :partial => 'shared/descriptions' %>
+
+<% content_for(:sidebar) do %>
+
+  <div id="mapdiv" style="height:400px"></div>
+
+  <%= render :partial => "shared/map_list" %>
+
+  <br/>
+
+  <%= render :partial => 'shared/agoda_search_box', :locals => {:city => "#{@destination.destination_name}" } %>
+<% end %>

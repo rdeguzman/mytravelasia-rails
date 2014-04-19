@@ -1,0 +1,83 @@
+<div class="entry">
+  <div class="entry-header">
+
+    <h4 class="title">Current Approval Status:</h4>
+    <div class="align-center">
+      <span id="approval">
+        <%= if @poi.approved then image_tag("yes.gif", :id=>"status_approved") else image_tag("no.gif", :id=>"status_disapproved") end %>
+      </span>
+    </div>
+
+    <p class="meta">
+      YES - Included in the search results and publicly available.<br>
+      NO - Not included in search results and cannot only be accessed by admin and allowed users.<br>
+    </p>
+
+    <% if admin_group? %>
+      <%= link_to "Edit Approval", edit_admin_poi_path(@poi), :class => "button primary" %>
+    <% end %>
+
+  </div>
+
+  <div class="entry-header">
+    <h4 class="title">Allowed Users:</h4>
+
+    <p class="meta">
+      <span class="red">
+        Important: The following users below are allowed to manage this POI.<br/>
+        By clicking "YES" this means you are granting full access to the user to manage the POI.<br/>
+        By clicking "NO" this means you are revoking full access to the user to manage the POI.<br/>
+      </span>
+
+      <br/>
+
+      <table class = "datatable" id="allowed_users">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <th>User</th>
+            <th>Allowed</th>
+            <th>Allowed By</th>
+            <th>Updated By</th>
+            <% if admin_group? %>
+              <th>Allowed</th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @poi.poi_user_privileges.each do |privilege| %>
+            <tr class="<%= cycle('odd', 'even') %>">
+              <td><%= privilege.id %></td>
+              <td nowrap>
+                <%= link_to truncate(privilege.user.full_name, :length => 30), user_path(:id => privilege.user.id) %><br/>
+                <%= privilege.user.email %>
+              </td>
+              <td align="center"><%= image_tag "#{privilege.allowed}.png" %></td>
+              <td><%= privilege.allowed_by %></td>
+              <td><%= privilege.updated_at %></td>
+
+              <% if admin_group? %>
+                <td align="center">
+                  <%= link_to "Yes",
+                              admin_allow_ownership_path(:id => privilege.user.id, :poi_id => @poi.id),
+                              :class => "button",
+                              :id => "allow_yes_#{privilege.user.id}" %>
+
+                  <%= link_to "No",
+                              admin_deny_ownership_path(:id => privilege.user.id, :poi_id => @poi.id),
+                              :class => "button",
+                              :id => "allow_no_#{privilege.user.id}" %>
+                </td>
+              <% end %>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </p>
+
+  </div>
+
+</div>

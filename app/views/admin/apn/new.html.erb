@@ -1,0 +1,34 @@
+<h2>Create APN Notification</h2>
+
+<div class="entry">
+  <%= semantic_form_for :apn, :url => admin_create_apn_path do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :app_id,
+                  :hint => 'Choose a country',
+                  :as => :select,
+                  :collection => options_for_select(@countries.collect {|c| [c.country_name, c.id]}),
+                  :include_blank => false,
+                  :multiple => true,
+                  :input_html => {
+                      :style => 'height:100px;'
+                  } %>
+
+      <%= f.input :badge,
+                  :as => :number,
+                  :hint => "Number of badge to display on icon",
+                  :input_html => { :value => 1, :style => "width:50px;"} %>
+
+      <%= f.input :sound,
+                  :as => :select,
+                  :include_blank => false %>
+
+      <%= f.input :alert,
+                  :as => :text,
+                  :hint => "Maximum length of 10 characters",
+                  :input_html => { :maxlength => 100, :rows => 5 }  %>
+    <% end %>
+
+    <%= render :partial => 'shared/button', :locals => {:f => f, :label => "Create"} %>
+
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<% @descriptions.each do |description| %>
+  <b><%= description.description_type.title %></b>
+  <p><%= description.content %></p>
+
+  <% if can? :update, description %>
+    <%= link_to "Edit #{description.description_type.title}", edit_admin_description_path(description), :class => "button" %>
+    <%= link_to "Delete #{description.description_type.title}", admin_description_path(description), :confirm => "Are you sure?", :method => :delete, :class => "button" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,15 @@
+<% title "Destination Types" %>
+
+<div class="action_items buttons">
+  <%= link_to "Add Destination Type", new_admin_destination_type_path %>
+</div>
+
+<div class="clear"></div>
+ 
+<ul>
+<% @destination_types.each do |destination| %>
+  <li>
+    <%= link_to destination.name, edit_admin_destination_type_path(destination) %>
+  </li>
+<% end %>
+</ul>

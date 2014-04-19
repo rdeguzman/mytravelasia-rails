@@ -1,0 +1,4 @@
+/* Misc */
+div { zoom: 1; }
+#pois-organizer .organizer-container, #pois-organizer .organizer-nav { margin-top: -1px; }
+#comment-form .input_block input { padding: 3px 6px 7px; }

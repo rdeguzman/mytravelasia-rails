@@ -1,0 +1,52 @@
+<% if not user_signed_in? %>
+
+  <div class="entry-footer" id="poi_ownership">
+    <dt>
+      Are you affiliated with <%= @poi.name %>?
+      <dd>
+        <%= link_to "Be a Partner", new_partner_registration_path, {:rel => "nofollow"} %>
+        now to manage this page and update pictures.
+      </dd>
+    </dt>
+  </div>
+
+<% else %>
+  <% if admin_group? %>
+
+    <div class="entry-footer" id="poi_ownership">
+      <dt>
+        Are you affiliated with <%= @poi.name %>?
+        <dd>
+          You are admin. You can manage this.
+        </dd>
+      </dt>
+    </div>
+
+  <% elsif partner_group? %>
+
+    <% if @poi.ownership_request_empty?(current_user) %>
+      <div class="entry-footer" id="poi_ownership">
+        <dt>
+          Are you affiliated with <%= @poi.name %>?
+          <dd>
+            <%= link_to "Apply for Ownership", request_ownership_path(:id => @poi.id) %>
+          </dd>
+        </dt>
+      </div>
+
+    <% end %>
+
+  <% else %>
+    <div class="entry-footer" id="poi_ownership">
+      <dt>
+        Are you affiliated with <%= @poi.name %>?
+        <dd>
+          <%= link_to "Be a Partner", new_partner_registration_path, {:rel => "nofollow"} %>
+          now to manage this page and update pictures.
+        </dd>
+      </dt>
+    </div>
+
+  <% end %>
+
+<% end %>

@@ -1,0 +1,37 @@
+<% stylesheet('formtastic') %>
+<% stylesheet('formtastic_changes') %>
+
+<div class="boxed">
+  <%= semantic_form_for @user do |f| %>
+
+    <h4>Edit Profile for <%= @user.email %></h4>
+
+    <%= f.inputs do %>
+      <%= f.input :first_name, :label => "First Name" %>
+
+      <%= f.input :last_name, :label => "Last Name" %>
+
+      <%= f.input :country, :include_blank => false %>
+
+      <%= f.input :address %>
+
+      <%= f.input :mobile_no, :label => "Mobile" %>
+
+      <%= f.input :tel_no, :label => "Tel" %>
+
+      <%= f.input :fax_no, :label => "Fax" %>
+
+      <% if admin_group? %>
+        <%= f.input :role,
+                    :as => :select,
+                    :collection => ["admin", "normal", "partner"],
+                    :include_blank => false %>
+      <% end %>
+
+    <% end %>
+    <%= f.actions do %>
+      <%= f.submit "Update Profile", :class => "button primary submit", :disable_with => 'Saving...' %>
+    <% end %>
+
+  <% end %>
+</div>

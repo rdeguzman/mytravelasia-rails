@@ -1,0 +1,22 @@
+<% javascript(APP_CONFIG[:google_maps_url]) %>
+<script language="javascript">
+var latlong = new google.maps.LatLng(<%= @poi.latitude %>, <%= @poi.longitude %>);
+
+var myOptions = {
+  zoom: 15,
+  center: latlong,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+  overviewMapControl: true,
+  scaleControl: true
+};
+
+var map = new google.maps.Map(document.getElementById("mapdiv"), myOptions);
+
+var marker = new google.maps.Marker({
+  position: latlong,
+  map: map,
+  draggable: true,
+  raiseOnDrag: true
+});
+
+</script>

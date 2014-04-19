@@ -1,0 +1,2 @@
+<% output = {:data => mobileformat_pois(@pois), :total_pages => @pois.size == 0 ? 0 : @pois.total_pages } %>
+<%= raw output.to_json %>

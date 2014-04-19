@@ -1,0 +1,48 @@
+<%= javascript_include_tag "uploadify/swfobject.js", "uploadify/jquery.uploadify.v2.1.0.js" %>
+
+<script type="text/javascript" charset="utf-8">
+<%- session_key = Rails.application.config.session_options[:key] -%> 
+$(document).ready(function() {
+	
+	$('#picture_image').click(function(event){ 
+		event.preventDefault();
+	}); 
+	
+	$('#picture_image').uploadify({
+	  buttonText: 'Upload',
+  	uploader : '/uploadify/uploadify.swf',
+		cancelImg : '/uploadify/cancel.png',
+		multi : true,
+		auto : true,
+  	script : '/admin/pictures',
+  	//Function 'onComplete' below will process response from pictures_controller 'create'
+  	//format.json {render :json => { :result => 'success', :picture => admin_picture_path(@picture) } }
+		onComplete : function(event, queueID, fileObj, response, data) { 
+			var data = eval('(' + response + ')');
+			if(data.result == 'success'){
+			  $.getScript(data.picture);
+			}
+			else{
+			  alert(data.error);
+			  //We can have a <hr/> before alert or notice using jquery
+			  $('#alert').html(data.error)
+			}
+		},
+  	scriptData : {
+	        '_http_accept': 'application/javascript',
+					'format' : 'json',
+	        '_method': 'post',
+	        '<%= session_key %>' : encodeURIComponent('<%= u cookies[session_key] %>'),
+	        'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+					'poi_id' : '<%= @poi.id %>'
+	      }
+	});
+	
+	$('#picture_submit').click(function(event){ 
+			event.preventDefault(); 
+			$('#upload_photo').uploadifyUpload(); 
+		});
+		
+}); 
+</script>
+

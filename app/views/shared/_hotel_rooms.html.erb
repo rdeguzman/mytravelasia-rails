@@ -1,0 +1,101 @@
+<% stylesheet('rooms') %>
+<% javascript("application.rooms") %>
+
+<div class="entry">
+
+  <div class="entry-header" id="rooms_header">
+
+    <div id="rates_header">
+      <h2>Rooms</h2>
+
+      <% if false #unless @partner_hotels.count == 1 && @partner_hotels.first.partner_type == "HotelsCombined" %>
+        <ul class="check_rates">
+          <li>
+            CheckIn:
+            <% day = 60 * 60 * 24 %>
+            <% start_date = Time.now + (1 * day) %>
+            <%= text_field_tag(:check_in, start_date.strftime("%Y-%m-%d"), :class => "datepicker") %>
+          </li>
+          <li>
+            CheckOut:
+            <% end_date = start_date + (day * 1) %>
+            <%= text_field_tag(:check_out, end_date.strftime("%Y-%m-%d"), :class => "datepicker") %>
+
+          </li>
+
+          <%= link_to_function "Check Rates",
+                                "check_rates(#{@poi.id})",
+                       :class => "button active",
+                       :rel => "nofollow" %>
+        </ul>
+      <% end %>
+
+    </div>
+
+    <p class="meta">
+
+      <% @partner_hotels.each do |partner_hotel| %>
+        <div class="partner_hotel">
+          <%= link_to_partner_image_hotel partner_hotel, {:rel => 'nofollow', :target => '_blank'} %>
+          <%# partner_hotel.currency_min_rate %>
+
+          <% if admin_group? %>
+            <br/>
+            <%= link_to "Show",
+                        admin_partner_hotel_path(partner_hotel),
+                        :class => "button",
+                        :id => "show_#{partner_hotel.partner_type}" %>
+
+
+            <%= link_to "Delete",
+                        admin_partner_hotel_path(partner_hotel),
+                        :confirm => 'Are you sure?',
+                        :method => :delete,
+                        :class => "button danger",
+                        :id => "delete_#{partner_hotel.partner_type}" %>
+          <% end %>
+        </div>
+      <% end %>
+
+    </p>
+
+  </div>
+
+  <% unless @partner_hotels.count == 1 && @partner_hotels.first.partner_type == "HotelsCombined" %>
+    <div class="entry-single" id="available_rooms">
+    <table class = "datatable" id="rooms_list">
+      <thead>
+        <tr>
+          <th>Room Type</th>
+          <th>Currency</th>
+          <th>Rate</th>
+          <th>Provider</th>
+          <th>CheckIn/Out</th>
+        </tr>
+      </thead>
+
+      <% @partner_hotels.each do |partner_hotel| %>
+        <% partner_hotel.rooms.each do |room| %>
+          <tr>
+            <td><%= link_to room.room_type, partner_hotel.web_partner_url, {:rel => 'nofollow', :target => '_blank' } %></td>
+            <td align="right"><%= room.currency_code %></td>
+            <td align="right"><%= number_with_precision(room.rate, :precision => 2) %></td>
+            <td align="center"><%= link_to_partner_image_hotel partner_hotel, {:rel => 'nofollow', :target => '_blank', :size => "100x30"} %></td>
+            <td align="center">
+              <%= room.date_from.to_s(:with_day) %><br/>
+              <%= room.date_to.to_s(:with_day) %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+
+    </table>
+  </div>
+
+    <div class="entry-footer">
+      Note: The rates shown are indicative only. Please click on the provider link to check for actual room availability.
+    </div>
+ <% end %>
+
+</div>
+

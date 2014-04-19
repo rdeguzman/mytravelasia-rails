@@ -1,0 +1,25 @@
+<% unless @exclusive.blank? %>
+  <%= render :partial => 'exclusive' %>
+<% end %>
+
+<% unless @all_destinations.blank? %>
+  <% content_for :destinations do %>
+
+    <% if @country.destinations.count > APP_CONFIG[:country_top_destination_count] %>
+      <% content_for(:see_all_destinations_link) do %>
+        <%= link_to "See All Destinations", country_destinations_path(@country), :class => "button primary single-button" %>
+      <% end %>
+    <% end %>
+
+    <%= render :partial => 'countries/destination_list' %>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div class="ads boxed">
+    <strong><%= @country.name %></strong><br/>
+    <%= @country.description %>
+  </div>
+<% end %>
+
+<%= render :partial => 'home/index' %>

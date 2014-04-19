@@ -1,0 +1,37 @@
+.partner_hotel{
+  padding: 3px;
+  float: left;
+  width: 150px;
+  display: block;
+  margin: auto;
+}
+#rates_header{
+  margin-bottom: 5px;
+  border-bottom: 1px solid #E3E1D9;
+  height: 40px;
+}
+
+#rates_header h2{
+  float:left;
+  margin-bottom: 0px;
+}
+
+ul.check_rates{
+  background: #e3e1d9;
+  width: 370px;
+  padding: 5px;
+  float: right;
+  margin-bottom: 0px;
+}
+
+ul.check_rates li{
+  float:left;
+  list-style: none;
+  margin-left: 0px;
+  padding: 0px 5px;
+  font-weight: bold;
+}
+
+ul.check_rates li input{
+  width: 70px;
+}

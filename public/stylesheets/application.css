@@ -1,0 +1,103 @@
+h1 { color: #FF0084; font-size: 24px; }
+h2 { color: #4096EE; font-size: 18px; }
+
+/* Common elements in each page */
+.align-right { float: right; }
+.vertical-middle { position: relative; top: 50%;}
+
+.horizontal_links {padding:0; margin:0; list-style:none; border:0;}
+.horizontal_links li { float:left; margin:5px 0px 5px 0px; padding:0 10px; border:0;}
+
+.error_explanation { background-color: #FCC; border: solid 1px #C66; padding: 5px; }
+.error_explanation h1 { font-size: 18px; color: #ff0000;}
+.error_explanation li { font-size: 14px; color: #ff0000;}
+
+.flash_notice, .flash_error, .flash_alert { margin-top: 5px; padding: 5px 8px;}
+.flash_notice { background-color: #CFC; border: solid 1px #6C6; }
+.flash_error, .flash_alert { background-color: #FCC; border: solid 1px #C66; }
+
+.action_items{margin: 5px; padding: 5px; height: 25px; float:left;}
+
+div.buttons {
+  clear: both;
+}
+div.buttons a {
+  display: block;
+  float: left;
+  margin-right: 2px;
+  padding: 4px 7px 2px 7px;
+  border: 1px solid #ccc;
+  background-color: #356AA0;
+  color: #fff;
+  text-decoration: none;
+}
+div.buttons a:hover {
+  background-color: #FF0084;
+  text-decoration: none;
+}
+
+hr{ height: 1px;margin: 0; background: #C3D9FF;}
+
+.column_list{ float:left; list-style:none;}
+.column_list li, .column_dotted_list li{padding: 5px;}
+.column_dotted_list{ float:left;}
+
+/* Used for alternating colors */
+.odd {background: #D5E1DD;}
+.even {background: #C5EFFD;}
+.blue { color: #4096EE; }
+.pink { color: #FF0084; }
+
+/* Page: Index. Sections for home page*/
+.top-header{ background: #ffffff; height: 30px;}
+.header{ background: #ffffff; height: 80px; text-align: center;}
+.logo{ background: #ffffff; height: 100%; }
+.subheader{ background: #ffffff; font-size: 15px;}
+.main_content{ padding: 5px 0px 5px 0px;}
+.footer{ background: #ffffff; height: 100px;}
+.breadcrumbs{ padding: 5px;}
+.form_search{ background: #ffffff; margin: auto; text-align: center; width: 450px;}
+.form_search .label{ padding: 0px; margin: 0px; font-size: 24px;} 
+.form_search .searchbox{ background: #ffffff; margin: 5px; padding: 5px; font-size: 16px; border: solid 2px #4096EE; }
+.form_search input{ background: #FF0084; color: #000000; border: 0px; padding: 5px; font-size: 14px; border: solid 2px #999999; }
+
+.filter{float:left; margin-left: 10px; width: 250px; height: 250px; background: #cccccc;}
+
+/* Page: Destinations, Poi*/
+.map_container, .picture_container{ background: #eee; float: left; width: 900px; padding: 10px; margin: 10px;}
+
+/* Poi Element in List: _poi.html.erb */
+#poi_list h3 { margin: 0; padding: 0; color: #FF0084; }
+#poi_list h4 { margin: 0; padding: 0; color: #FF0084; }
+.image_holder_single { float:left; width: 100px; height: 100px; background-image: url(/images/thumb.png);}
+.image_holder_many { float:left; width: 100px; height: 100px; background-image: url(/images/thumb_many.png);}
+.image_holder_single img, .image_holder_many img{ margin-top: 12px; margin-left: 15px;}
+.image_holder_many p{text-align:center; color: #FF0084;}
+
+.background_thumb{ width: 100px; height: 100px; background: #ff0000;}
+.rating_bar {
+  width: 55px;
+  margin-left: 20px;
+  background: url(../images/ratings/star_x_grey.gif) 0 0 repeat-x;
+}
+.rating_bar div {
+  height: 12px;
+  background: url(../images/ratings/star_x_orange.gif) 0 0 repeat-x;
+}
+
+/* Page: Poi*/
+.poi_info{padding:10px 0px 10px 0px; margin: 0px 10px;}
+.poi_column_title{float:left; font-weight: bold; padding: 0px 5px 0px 5px; margin: 0px 10px 0px 0px;}
+#map { width: 500px; height: 300px; background: #CCCAB1;}
+
+/* Page: Sections for picture management*/
+.web_photo_form{ background:#EEEEEE; margin: 10px; padding: 5px; width: 900px; height: 70px;}
+.upload_form{ background:#EEEEEE; margin: 10px; padding: 5px; width: 900px;}
+.upload_form h2{ margin-bottom: 0px;}
+.upload_form #picture_imageUploader{ margin-left: 20px; padding: 5px;}
+.upload_form #picture_submit{ background: #356AA0; color: #fff; border: 0px; margin-left: 20px; padding: 5px; font-size: 16px; width: 110px;}
+.upload_form .simple_upload_link{ font-size: 10px;}
+.small{ font-size: 10px;}
+
+/* Page: Dashboard */
+.dashboard_section{ float: left;}

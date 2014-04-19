@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title><%= content_for?(:title) ? yield(:title) : "MyTravel-Asia Map" %></title>
+  <% if false %><meta name="robots" content="noindex"><% end %>
+
+  <%= stylesheet_link_tag 'reset'%>
+  <%= stylesheet_link_tag 'ie'%>
+  <%= stylesheet_link_tag 'ie7'%>
+  <%= stylesheet_link_tag 'fancybox'%>
+  <%= stylesheet_link_tag 'buttons'%>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.16.custom'%>
+  <%= stylesheet_link_tag 'custom'%>
+
+  <%= javascript_include_tag 'jquery-1.6.2.min' %>
+  <%= javascript_include_tag 'jquery_ujs' %>
+
+  <%= yield(:head) %>
+
+  <%= csrf_meta_tag %>
+
+</head>
+<body onload="initialize()">
+
+<%= render :partial => 'layouts/facebook' %>
+
+<%= render :partial => 'layouts/header-top' %>
+
+<%= render :partial => 'layouts/header-logo' %>
+
+<div id="nav">
+
+	<div class="container">
+    <%= render_navigation :level => 1 %>
+	</div>
+
+</div>
+
+<div id="content">
+
+	<div class="container">
+
+    <%= render :partial => 'layouts/facebook-like-button', :locals => {:facebook_width => 500} %>
+
+    <%= yield %>
+
+	</div>
+
+</div>
+
+<%= render :partial => 'layouts/footer' %>
+
+</body>
+</html>

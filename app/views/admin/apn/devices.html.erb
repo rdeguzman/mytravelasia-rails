@@ -1,0 +1,45 @@
+<% stylesheet('datatables') %>
+<% stylesheet('pagination') %>
+<% javascript('jquery.datatables') %>
+<% javascript('datatables-init') %>
+
+<% if admin_group? %>
+  <%= link_to "Create Notification", admin_new_apn_path, :class => "button active" %> <br/> <br/>
+<% end %>
+
+<h3>Total Devices: <%= @total_records %></h3>
+
+<table class = "datatable" id="allowed_users">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Token</td>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>App Id</th>
+      <th>Profile Id</th>
+      <th>CreatedAt</th>
+      <th>UpdatedAt</th>
+      <th>LastRegisterdAt</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= device.id %></td>
+        <td width="250"><%= device.token %></td>
+        <td><%= device.longitude %></td>
+        <td><%= device.latitude %></td>
+        <td><%= device.app_id %></td>
+        <td><%= link_to device.profile_id,
+                        "http://www.facebook.com/profile.php?id=#{device.profile_id}" if device.profile_id %></td>
+        <td><%= device.created_at.to_s(:full) %></td>
+        <td><%= device.updated_at.to_s(:full) %></td>
+        <td><%= device.last_registered_at.to_s(:full) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @devices, :class => "flickr_pagination" %>

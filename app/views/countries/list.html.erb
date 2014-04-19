@@ -1,0 +1,9 @@
+<% stylesheet('pagination') %>
+
+<h2><%= params[:type].to_s.camelize %> in <%= @country.name %></h2>
+
+<% @pois.each do |poi| %>
+  <%= render :partial => 'home/entry', :locals => {:poi => poi, :entry_title => nil } %>
+<% end %>
+
+<%= will_paginate @pois, :class => "flickr_pagination" %>

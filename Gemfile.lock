@@ -1,0 +1,262 @@
+GIT
+  remote: git://github.com/rdeguzman/tlsmail.git
+  revision: dd54f1d4a4d7c5ab86d484133483a3baaae90c79
+  specs:
+    tlsmail (0.0.3)
+
+GIT
+  remote: https://github.com/rdeguzman/apn_on_rails.git
+  revision: 0b4f321977e2b329483230fd61a3f9f32b167d3b
+  branch: master
+  specs:
+    apn_on_rails (0.5.1)
+      actionpack
+      activerecord
+      configatron
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    abstract (1.0.0)
+    actionmailer (3.0.8)
+      actionpack (= 3.0.8)
+      mail (~> 2.2.19)
+    actionpack (3.0.8)
+      activemodel (= 3.0.8)
+      activesupport (= 3.0.8)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.5.0)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.14)
+      rack-test (~> 0.5.7)
+      tzinfo (~> 0.3.23)
+    activemodel (3.0.8)
+      activesupport (= 3.0.8)
+      builder (~> 2.1.2)
+      i18n (~> 0.5.0)
+    activerecord (3.0.8)
+      activemodel (= 3.0.8)
+      activesupport (= 3.0.8)
+      arel (~> 2.0.10)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.8)
+      activemodel (= 3.0.8)
+      activesupport (= 3.0.8)
+    activesupport (3.0.8)
+    addressable (2.2.8)
+    arel (2.0.10)
+    bcrypt-ruby (3.0.1)
+    builder (2.1.2)
+    cancan (1.6.7)
+    capistrano (2.12.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capybara (1.1.2)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (~> 2.0)
+      xpath (~> 0.1.4)
+    childprocess (0.3.4)
+      ffi (~> 1.0, >= 1.0.6)
+    cocaine (0.2.1)
+    configatron (2.9.1)
+      yamler (>= 0.1.0)
+    database_cleaner (0.8.0)
+    devise (1.5.3)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.1)
+    diff-lcs (1.1.3)
+    domain_name (0.5.3)
+      unf (~> 0.0.3)
+    enumerated_attribute (0.2.16)
+      meta_programming (>= 0.2.1)
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
+    factory_girl (3.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.4.0)
+      factory_girl (~> 3.4.0)
+      railties (>= 3.0.0)
+    ffi (1.1.3)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    fuubar (1.1.0)
+      rspec (~> 2.0)
+      rspec-instafail (~> 0.2.0)
+      ruby-progressbar (~> 1.0.0)
+    googlecharts (1.6.8)
+    guard (1.1.1)
+      listen (>= 0.4.2)
+      thor (>= 0.14.6)
+    guard-rspec (1.0.1)
+      guard (>= 1.1)
+    guard-spork (1.0.0)
+      guard (>= 1.0.0)
+      spork (>= 0.8.4)
+    highline (1.6.13)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
+    i18n (0.5.0)
+    launchy (2.1.0)
+      addressable (~> 2.2.6)
+    libwebsocket (0.1.5)
+      addressable
+    listen (0.4.5)
+      rb-fchange (~> 0.0.5)
+      rb-fsevent (~> 0.9.1)
+      rb-inotify (~> 0.8.8)
+    mail (2.2.19)
+      activesupport (>= 2.3.6)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mechanize (2.5.1)
+      domain_name (~> 0.5, >= 0.5.1)
+      mime-types (~> 1.17, >= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.4)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (~> 0.0, >= 0.0.9)
+    meta_programming (0.2.2)
+    mime-types (1.18)
+    multi_json (1.3.6)
+    multi_xml (0.5.1)
+    mysql2 (0.2.18)
+    net-http-digest_auth (1.2.1)
+    net-http-persistent (2.7)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.5.2)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
+    nokogiri (1.5.4)
+    ntlm-http (0.1.1)
+    orm_adapter (0.0.7)
+    paperclip (3.0.4)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (>= 0.0.2)
+      mime-types
+    pg (0.14.0)
+    polyglot (0.3.3)
+    rack (1.2.5)
+    rack-mount (0.6.14)
+      rack (>= 1.0.0)
+    rack-test (0.5.7)
+      rack (>= 1.0)
+    rails (3.0.8)
+      actionmailer (= 3.0.8)
+      actionpack (= 3.0.8)
+      activerecord (= 3.0.8)
+      activeresource (= 3.0.8)
+      activesupport (= 3.0.8)
+      bundler (~> 1.0)
+      railties (= 3.0.8)
+    railties (3.0.8)
+      actionpack (= 3.0.8)
+      activesupport (= 3.0.8)
+      rake (>= 0.8.7)
+      thor (~> 0.14.4)
+    rake (0.9.2.2)
+    rb-fchange (0.0.5)
+      ffi
+    rb-fsevent (0.9.1)
+    rb-inotify (0.8.8)
+      ffi (>= 0.5.0)
+    recaptcha (0.3.5)
+    riddle (1.5.2)
+    rspec (2.10.0)
+      rspec-core (~> 2.10.0)
+      rspec-expectations (~> 2.10.0)
+      rspec-mocks (~> 2.10.0)
+    rspec-core (2.10.1)
+    rspec-expectations (2.10.0)
+      diff-lcs (~> 1.1.3)
+    rspec-instafail (0.2.4)
+    rspec-mocks (2.10.1)
+    rspec-rails (2.10.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec (~> 2.10.0)
+    ruby-progressbar (1.0.2)
+    rubyzip (0.9.9)
+    rvm-capistrano (1.2.2)
+      capistrano (>= 2.0.0)
+    selenium-webdriver (2.25.0)
+      childprocess (>= 0.2.5)
+      libwebsocket (~> 0.1.3)
+      multi_json (~> 1.0)
+      rubyzip
+    simple-navigation (3.7.0)
+      activesupport (>= 2.3.2)
+    spork (1.0.0rc3)
+    thinking-sphinx (2.0.10)
+      activerecord (>= 3.0.3)
+      builder (>= 2.1.2)
+      riddle (>= 1.5.0)
+    thor (0.14.6)
+    treetop (1.4.10)
+      polyglot
+      polyglot (>= 0.3.1)
+    tzinfo (0.3.35)
+    unf (0.0.5)
+      unf_ext
+    unf_ext (0.0.5)
+    warden (1.2.0)
+      rack (>= 1.0)
+    webrobots (0.0.13)
+    will_paginate (3.0.3)
+    xpath (0.1.4)
+      nokogiri (~> 1.3)
+    yamler (0.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  apn_on_rails!
+  cancan
+  capistrano
+  capybara
+  database_cleaner
+  devise
+  enumerated_attribute
+  factory_girl_rails
+  formtastic
+  fuubar
+  googlecharts
+  guard
+  guard-rspec
+  guard-spork
+  httparty
+  launchy
+  mechanize
+  mime-types
+  mysql2 (< 0.3)
+  nokogiri
+  paperclip
+  pg
+  rails (= 3.0.8)
+  recaptcha
+  rspec
+  rspec-rails
+  rvm-capistrano
+  selenium-webdriver
+  simple-navigation
+  spork (> 0.9.0.rc)
+  thinking-sphinx (= 2.0.10)
+  tlsmail!
+  will_paginate

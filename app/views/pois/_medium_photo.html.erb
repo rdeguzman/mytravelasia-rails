@@ -1,0 +1,9 @@
+<% if poi.has_photos? %>
+  <%= link_to image_tag(poi.default_picture_full_path,
+                        :size => "240x240",
+                        :class => "entry-title-image"),
+              poi.default_picture_full_path,
+              :class => "single_image" %>
+<% else %>
+  <%= image_tag "no-image.png", :size => "240x240", :class => "entry-title-image" %>
+<% end %>

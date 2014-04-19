@@ -1,0 +1,2 @@
+<% output = {:data => format_feed(@feeds), :total_pages => @feeds.size == 0 ? 0 : @feeds.total_pages } %>
+<%= raw output.to_json %>

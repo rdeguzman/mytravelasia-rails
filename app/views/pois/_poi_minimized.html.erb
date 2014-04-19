@@ -1,0 +1,39 @@
+<% if poi_minimized %>
+  <%= div_for(poi_minimized, :class => "poi-list-entry-minimized") do %>
+
+    <div class="main-entry">
+      <div class="marker">
+        <% if poi_minimized.has_map? %>
+          <%= link_to_function image_tag(marker_image_default_path(@count)), "showMarkerByID(#{poi_minimized.id});" %>
+        <% else %>
+          <h5 style="width:25px;text-align:center;"><%= @count %></h5>
+        <% end %>
+      </div>
+
+      <div class="image">
+        <% if poi_minimized.has_photos? and not poi_minimized.picture_thumb_path.blank? %>
+          <%= image_tag poi_minimized.picture_thumb_path, :size => "32x32", :class => "entry-title-image-minimized" %>
+        <% else %>
+          <%= image_tag "no-image.png", :size => "32x32", :class => "entry-title-image-minimized" %>
+        <% end %>
+      </div>
+
+      <div class="entry-minimized">
+        <strong><%= link_to truncate_text(poi_minimized.name, 75), poi_path(poi_minimized) %></strong><br/>
+      </div>
+
+      <div class="sidebar">
+        <div class="ratings_minimized">
+          <%= content_tag(:div, "", :class => "star rating#{poi_minimized.total_stars.round}") %>
+        </div>
+
+        <% if poi_minimized.has_rate? %>
+          <span class="price_minimized"><%= format_rate(poi_minimized) %></span>
+        <% end %>
+      </div>
+
+    </div>
+
+  <% end %>
+  <% @count = @count + 1 %>
+<% end %>

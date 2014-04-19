@@ -1,0 +1,10 @@
+<% title "Edit Description Type" %>
+
+<%= render :partial => 'form' %>
+
+<hr/>
+
+<div class="action_items buttons">
+  <%= link_to "Delete", admin_description_type_path, :confirm => "Are you sure?", :method => :delete %>
+  Are you sure you want to delete <%= @description_type.title %>?
+</div>

@@ -1,0 +1,8 @@
+
+#recaptcha_area, #recaptcha_table{
+  margin-left: 170px;
+}
+
+#recaptcha_area input#recaptcha_response_field{
+  height: 15px;
+}

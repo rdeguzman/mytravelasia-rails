@@ -1,0 +1,147 @@
+/* -------------------------------------------------------------------------------------------------
+
+Load this stylesheet after formtastic.css in your layouts to override the CSS to suit your needs.
+This will allow you to update formtastic.css with new releases without clobbering your own changes.
+
+For example, to make the inline hint paragraphs a little darker in color than the standard #666:
+
+form.formtastic fieldset > ol > li p.inline-hints { color:#333; }
+
+HINT:
+The following style may be *conditionally* included for improved support on older versions of IE(<8)
+form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
+
+--------------------------------------------------------------------------------------------------*/
+/*form.formtastic input, select{margin: 5px; padding: 5px; border: solid 2px #77BED2; }*/
+form.formtastic{
+  padding: 10px;
+  width: 650px;
+}
+
+form.formtastic section li, form.formtastic li{
+  list-style: none;
+  display:block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+form.formtastic section label, form.formtastic fieldset.inputs label{
+  color: #404040;
+  /*float: left;*/
+  font-size: 12px;
+  font-weight: bold;
+  /*text-transform: uppercase;*/
+  /*width: 100%;*/
+  text-align: right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+form.formtastic input{
+  border-radius: 3px;
+  border: 1px solid #c9c9c9;
+  color: #404040;
+  font-size: 11px;
+  height: 28px;
+  padding: 0 6px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+form.formtastic textarea{
+  height: auto;
+  border-radius: 3px;
+  border: 1px solid #c9c9c9;
+  color: #404040;
+  font-size: 11px;
+  margin-bottom: 3px;
+  padding: 0 6px;
+  width: 70%;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+form.formtastic select{
+  border-radius: 3px;
+  border: 1px solid #c9c9c9;
+  color: #404040;
+  font-size: 11px;
+  margin-bottom: 3px;
+  padding: 0 6px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  height: 28px;
+}
+
+form.formtastic .boolean input {
+  width: 20px;
+  height: auto;
+}
+
+form.formtastic legend{
+  height: 30px;
+  width: 100%;
+}
+
+
+form.formtastic .check_boxes label{
+  width: 100%;
+}
+
+form.formtastic .check_boxes li{
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+form.formtastic .check_boxes li label{
+  text-align: left;
+  vertical-align: top;
+}
+
+form.formtastic .check_boxes input{
+  width: 20px;
+  margin-top: -5px;
+}
+
+form.formtastic section p {
+  color: #999;
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 13px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  text-transform: none;
+}
+
+form.formtastic fieldset > ol > li p.inline-hints {
+  color:#ff0000;
+}
+
+form.formtastic fieldset.actions {
+  margin-left: 25%;
+}
+form.formtastic fieldset.actions li {
+  padding: 5px;
+  float: left;
+}
+
+.horizontal {
+  margin-left: 15%;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: auto;
+  min-height: 40px;
+  display: block;
+}
+
+.horizontal li{
+  float: left;
+  padding: 5px;
+}
+
+form.formtastic input:disabled{
+  background:#dddddd;
+}

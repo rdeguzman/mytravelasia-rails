@@ -1,0 +1,7 @@
+<% @count = 1 %>
+
+<% @pois.in_groups(2, false) do |group| %>
+  <div style="float:left; display:block; padding: 0px 5px; margin: 0px;">
+    <%= render :partial => "pois/poi_minimized", :collection => group %>
+  </div>
+<% end %>

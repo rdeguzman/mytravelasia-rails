@@ -1,0 +1,16 @@
+<li>
+  <% country = top_destination.country %>
+
+  <% if current_page?(root_url) %>
+
+    <%= link_to image_tag("icons/countries/16x11/#{country.country_code}.png", :size => "16x11") + " #{truncate_text(top_destination.destination_name, 15)}",
+                country_destination_path(country, top_destination),
+                :title => top_destination.destination_name %>
+
+  <% else %>
+    <%= link_to "#{truncate_text(top_destination.destination_name, 25)}",
+                country_destination_path(country, top_destination),
+                :title => top_destination.destination_name %>
+  <% end %>
+
+</li>

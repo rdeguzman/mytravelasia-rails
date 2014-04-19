@@ -1,0 +1,20 @@
+<li>
+  <%= link_to_web_photo(web_photo)%>
+  
+  <div class="caption">
+    <div class="download">
+      <%= web_photo.credits_to %>
+    </div>
+    <div class="image-title"><%= web_photo.caption_title %></div>
+    <div class="image-desc">
+      <%= web_photo.caption_description %> <br/><br/>
+      
+      <div class="action_items buttons">
+        <%= link_to "Edit Caption",  edit_admin_web_photo_path(web_photo) %>
+        <%= link_to "Delete Picture", admin_web_photo_path(web_photo), :confirm => "Are you sure?", :method => :delete %>
+      </div>
+      
+    </div>
+  </div>
+  
+</li>

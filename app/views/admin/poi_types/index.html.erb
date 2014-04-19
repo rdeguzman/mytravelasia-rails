@@ -1,0 +1,9 @@
+<h1>Poi Types</h1>
+
+<ul>
+<% @poi_types.each do |poi| %>
+  <li>
+    <%= link_to poi.poi_type_name, edit_admin_poi_type_path(poi) %>
+  </li>
+<% end %>
+</ul>

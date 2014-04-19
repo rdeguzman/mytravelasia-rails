@@ -1,0 +1,18 @@
+<div class="flickr-feed boxed">
+
+  <div class="box-header">
+
+    <h6 class="align-left">Photos</h6>
+
+  </div>
+
+  <ul>
+    <% @random_pics.each do |pic| %>
+      <li>
+        <%= link_to image_tag(pic.image.url(:thumb), :size => "75x75", :class => "flickr-image"),
+                    poi_path(pic.poi.id) %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

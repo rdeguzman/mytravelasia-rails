@@ -1,0 +1,35 @@
+<h1>Edit Partner Hotel</h1>
+<div class="entry">
+
+  <%= semantic_form_for [:admin, @partner_hotel] do |f| %>
+
+    <%= f.inputs do %>
+      <%= f.input :poi_id, :label => "Poi ID" %>
+
+      <%= f.input :hotel_name,
+                  :input_html => { :disabled => true } %>
+
+      <%= f.input :partner_type,
+                  :label => "Partner Type",
+                  :input_html => { :disabled => true } %>
+
+      <%= f.input :web_partner_url,
+                  :as => :string,
+                  :label => "Web Partner URL",
+                  :input_html => { :disabled => true } %>
+
+      <%= f.input :mobile_partner_url,
+                  :as => :string,
+                  :label => "Mobile Partner URL",
+                  :input_html => { :disabled => true } %>
+    <% end %>
+
+    <hr/>
+
+    <%= render :partial => 'shared/button', :locals => {:f => f, :label => "Update Partner Hotel"} %>
+
+  <% end %>
+
+</div>
+
+<%= link_to "Fetch Rates", root_path, :class => "button" %>

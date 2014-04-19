@@ -1,0 +1,28 @@
+<div class="entry">
+
+  <div class="entry-header">
+    <h3 class="title">
+      <%= pluralize(@all_destinations.count, "Destination") %> in <%= @country.country_name %>
+    </h3>
+
+    <%= yield(:see_all_destinations_link) %>
+
+  </div>
+
+      <span class="collapse-trigger">
+        <%= image_tag "collapse-button-up.png" %>
+      </span>
+
+  <div class="clear"></div>
+
+  <div class="content">
+
+    <% @all_destinations.in_groups(3, false) do |group| %>
+      <ul class="column_list">
+        <%= render :partial => "destinations/destination", :collection => group %>
+      </ul>
+    <% end %>
+
+  </div>
+
+</div>

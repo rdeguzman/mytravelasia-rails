@@ -1,0 +1,18 @@
+<% stylesheet('pagination') %>
+
+<h3 id="list-info"><%= yield(:list_title) %><%= page_entries_info @pois, :model => "" %></h3>
+
+<%= yield(:filters) %>
+
+<hr/>
+
+<div id="poi_list">
+  <% @count = 1 %>
+
+  <% @pois.each do |poi| %>
+    <%= render :partial => "pois/poi", :locals => {:poi => poi} %>
+    <% @count = @count + 1 %>
+  <% end %>
+</div>
+
+<%= will_paginate @pois, :class => "flickr_pagination" %>

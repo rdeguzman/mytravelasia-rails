@@ -1,0 +1,10 @@
+<%= render "shared/error_messages", :target => @destination_type %>
+
+<%= semantic_form_for [:admin, @destination_type] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+  <% end %>
+  
+  <%= render :partial => 'shared/button', :locals => {:f => f} %>
+  
+<% end %>

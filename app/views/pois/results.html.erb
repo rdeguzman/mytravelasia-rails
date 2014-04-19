@@ -1,0 +1,15 @@
+<% content_for(:list_title) do %>
+  What's in <em><%= params[:keyword] %></em>?
+<% end %>
+
+<%= render :partial => 'shared/poi_list' %>
+
+<% content_for(:sidebar) do %>
+
+  <div id="mapdiv" style="height:400px"></div>
+
+  <%= render :partial => "shared/map_list" %>
+
+  <br/>
+
+<% end %>

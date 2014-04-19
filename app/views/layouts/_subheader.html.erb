@@ -1,0 +1,31 @@
+<div class="span-24 last subheader">
+  <ul class="horizontal_links">
+    <li><%= link_to "Brunei", country_path("110-Brunei") %></li>
+    <li><%= link_to "Cambodia", country_path("108-Cambodia") %></li>
+    <li><%= link_to "Hong Kong", country_path("111-Hong Kong") %></li>
+    <li><%= link_to "Indonesia", country_path("105-Indonesia") %></li>
+    
+    <li><%= link_to "Laos", country_path("104-Laos") %></li>
+    <li><%= link_to "Malaysia", country_path("101-Malaysia") %></li>
+    <li><%= link_to "Myanmar", country_path("106-Myanmar") %></li>
+    <li><%= link_to "Philippines", country_path("103-Philippines") %></li>
+    <li><%= link_to "Singapore", country_path("109-Singapore") %></li>
+    <li><%= link_to "Taiwan", country_path("102-Taiwan") %></li>
+    <li><%= link_to "Thailand", country_path("100-Thailand") %></li>
+    <li><%= link_to "Vietnam", country_path("107-Vietnam") %></li>
+  </ul>
+</div>
+
+<% if admin_group? %>
+<hr/>
+Only the admin group can see the links below:
+<div class="span-24 last subheader">
+  <ul class="horizontal_links">
+    <li><%= link_to "Admin Home", admin_dashboard_path %></li>
+    <li><%= link_to "Add Country", new_admin_country_path %></li>
+    <li><%= link_to "Add Destination", new_admin_destination_path %></li>
+    <li><%= link_to "Add Poi", new_admin_poi_path %></li>
+    <li><%= link_to "Add Description Type", new_admin_description_type_path %></li>
+  </ul>
+</div>
+<% end %>

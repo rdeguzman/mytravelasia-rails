@@ -1,0 +1,10 @@
+<%= render "shared/error_messages", :target => @poi_type %>
+
+<%= semantic_form_for [:admin, @poi_type] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :poi_type_name %>
+  <% end %>
+  
+  <%= render :partial => 'shared/button', :locals => {:f => f} %>
+  
+<% end %>

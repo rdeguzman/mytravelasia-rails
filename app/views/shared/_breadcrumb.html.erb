@@ -1,0 +1,6 @@
+<div id="breadcrumbs">
+  You are in
+  <%= link_to @poi.country_name, country_path(@poi.country_id) %> >
+  <%= link_to @poi.destination_name, country_destination_path(@poi.country, @poi.destination) %> >
+  <%= link_to @poi.name, poi_path(@poi.id) %>
+</div>

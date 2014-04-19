@@ -1,0 +1,82 @@
+<% javascript('datatables-init') %>
+
+<%= render :partial => 'shared/breadcrumb' %>
+
+<div class="entry">
+
+  <div class="entry-header">
+    <h2 class="title"><%= @partner_hotel.hotel_name %></h2>
+
+    <p class="meta">
+      <%= @partner_hotel.full_address %>
+
+      <%= link_to "Edit #{@partner_hotel.partner_type}",
+                  edit_admin_partner_hotel_path(@partner_hotel.id),
+                  :class => "button primary",
+                  :id => "edit_#{@partner_hotel.partner_type}" %>
+
+    </p>
+  </div>
+
+  <div class="entry-single">
+    <p>
+      Hotel ID: <strong><%= @partner_hotel.hotel_id %></strong>
+    </p>
+
+    <p>
+      Minimum Rate: <strong><%= @partner_hotel.currency_min_rate %></strong>
+    </p>
+
+    <p>
+      Web Partner URL:<br/>
+      <%= link_to @partner_hotel.web_partner_url,
+                  @partner_hotel.web_partner_url,
+                  {:rel => 'nofollow', :target => '_blank'}  %>
+    </p>
+
+    <p>
+      Mobile Partner URL: <br/>
+      <%= link_to @partner_hotel.mobile_partner_url,
+                  @partner_hotel.mobile_partner_url,
+                  {:rel => 'nofollow', :target => '_blank'}  %>
+    </p>
+
+  </div>
+
+</div>
+
+<div class="entry">
+
+  <div class="entry-header">
+    <h2 class="title">Rooms</h2>
+    <%= link_to "Fetch Rates", admin_partner_hotel_fetch_rooms_path(@partner_hotel.id),
+                :class => "button primary" %>
+  </div>
+
+  <div class="entry-single">
+    <table class = "datatable">
+      <thead>
+        <tr>
+          <th>Room Type</th>
+          <th>Currency</th>
+          <th>Rate</th>
+          <th>Date From</th>
+          <th>Date To</th>
+          <th>Date Created</th>
+        </tr>
+      </thead>
+
+      <% @rooms.each do |room| %>
+        <tr>
+          <td><%= room.room_type %></td>
+          <td><%= room.currency_code %></td>
+          <td><%= room.rate %></td>
+          <td><%= room.date_from %></td>
+          <td><%= room.date_to %></td>
+          <td><%= room.created_at.to_s(:full) %></td>
+        </tr>
+      <% end %>
+
+    </table>
+  </div>
+</div>

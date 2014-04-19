@@ -1,0 +1,192 @@
+<%= render "shared/error_messages", :target => @poi %>
+
+<div class="entry" id="poi_entry">
+  <%= semantic_form_for [:admin, @poi] do |f| %>
+    <%= f.inputs do %>
+
+      <%= f.input :name %>
+
+      <% if admin_group? %>
+        <hr/>
+        <%= f.input :approved, :as => :select, :include_blank => false %>
+      <% end %>
+
+      <hr/>
+
+      <div class="horizontal">
+
+        <% if admin_group? %>
+          <%= f.input :featured, :as => :select, :include_blank => false %>
+
+          <%= f.input :exclusive, :label => "Exclusive or Special" %>
+
+          <%= f.input :poi_type,
+                      :label => "PoiType",
+                      :member_label => :poi_type_name,
+                      :include_blank => false  %>
+        <% end %>
+
+        <% if partner_group? %>
+          <%= f.input :poi_type,
+                      :label => "PoiType",
+                      :collection => @poi.partner_poi_types,
+                      :member_label => :poi_type_name,
+                      :include_blank => false  %>
+        <% end %>
+
+
+        <%= f.input :bookable %>
+
+      </div>
+
+      <div class="clear"></div>
+
+      <p class="red">
+        Check "Bookable" if you want to receive booking enquiries from the web and mobile.
+        It should enable the "Booking Email Admins" field below, nominate your email address there.
+      </p>
+
+      <div class="clear"></div>
+
+      <hr/>
+
+      <%= f.input :booking_email_providers,
+                  :label => "Booking Email Admins",
+                  :input_html => { :disabled => !@poi.bookable? },
+                  :hint => "Maximum of 3 email addresses allowed. Seperate each email by ','. Ex: rupert@2rmobile.com,caloylibosada@gmail.com" %>
+
+      <hr/>
+
+      <div class="horizontal">
+        <%= f.input :country,
+                  :collection => Country.order(:country_name),
+                  :include_blank => false  %>
+
+        <%= f.input :destination, :collection => Destination.order(:destination_name)  %>
+      </div>
+
+      <hr/>
+
+      <p class="red">
+        This should be the <b>actual POI Street Address or location</b> so it can be
+        included in the search. Please do not specify an office address, you can include
+        other address details (i.e office reservation, etc) in the description.
+        <br/><br/>
+      </p>
+
+      <div class="clear"></div>
+
+
+      <%= f.input :address,
+                  :label => "Street Address",
+                  :hint => " Try to seperate with commas. To specify a street address,
+                  i.e (5400 East Asia Drive, Filinvest Corporate City). To specify a location,
+                  i.e (Pamilacan Island, Baclayon).
+                  No need to add Destination as it is automatically added." %>
+
+      <div class="clear"></div>
+
+      <hr/>
+
+      <div class="horizontal">
+        <p>Changing the longitude and latitude automatically updates the marker on the map</p>
+        <%= f.input :longitude  %>
+        <%= f.input :latitude %>
+      </div>
+
+      <label>
+
+        <li><%= link_to "Hide Map", "#", :onclick => "toggleMap();", :id => "link_toggle_map" %></li>
+        <li><div id="mapdiv" style="height:400px"></div></li>
+
+      </label>
+
+      <hr/>
+
+      <%= f.input :tel_no,
+                  :hint=>"Seperate with commas for multiple entries. Include country code and area code. i.e (63)(2)7274927, +(63)(917)8811151" %>
+
+      <%= f.input :web_url,
+                  :hint=>"No need for http://. Seperate with commas for multiple entries." %>
+
+      <%= f.input :email,
+                  :hint=>"Seperate with commas for multiple entries." %>
+
+      <hr/>
+
+      <%= f.input :description, :input_html => { :rows => 20 } %>
+
+      <hr/>
+
+    <% end %>
+
+    <%= render :partial => 'shared/button', :locals => {:f => f} %>
+
+  <% end %>
+</div>
+
+<%= render :partial => "shared/map" %>
+
+<script language="javascript">
+function toggleMap(){
+  var mapdiv = $("#mapdiv"), link = $("#link_toggle_map");
+  if (mapdiv.is(":visible")) {
+    mapdiv.slideUp();
+    link.html("Show Map");
+  }
+  else{
+    mapdiv.slideDown();
+    link.html("Hide Map");
+  }
+
+  google.maps.event.trigger(map, "resize");
+}
+
+function moveMarker(){
+  var lat = $("#poi_latitude").val();
+  var lng = $("#poi_longitude").val();
+  var lonlat = new google.maps.LatLng(lat, lng);
+  marker.setPosition(lonlat);
+  map.setCenter(lonlat);
+}
+
+google.maps.event.addListener(marker, "dragend", function(){
+  var pos = marker.getPosition();
+  var input_longitude = $("#poi_longitude");
+  var input_latitude = $("#poi_latitude");
+  input_latitude.val(pos.lat());
+  input_longitude.val(pos.lng());
+});
+
+$("#poi_latitude").change(function(){
+  moveMarker();
+});
+
+$("#poi_longitude").change(function(){
+  moveMarker();
+});
+
+$("#poi_country_id").change(function(){
+  var country_id = $("#poi_country_id :selected").val();
+  $("#ajax-loader").remove();
+  $("#poi_destination_input").append('<img id="ajax-loader" src="/images/ajax-loader-small.gif"/>');
+
+  $.get('/ajax/destinations?country_id=' + country_id, function(data){
+    $("#ajax-loader").remove();
+    $("#poi_destination_input").remove();
+    $("#poi_destination_id_input").remove();
+    $("#poi_country_input").after(data);
+  });
+});
+
+$("#poi_bookable").change(function(){
+   if (this.checked) {
+    $("#poi_booking_email_providers").prop('disabled', false);
+    console.log("checkbox is checked");
+   }
+  else{
+    $("#poi_booking_email_providers").prop('disabled', true);
+   }
+});
+
+</script>

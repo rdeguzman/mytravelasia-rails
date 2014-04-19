@@ -1,0 +1,89 @@
+<% javascript("jquery.cycle.all.min") %>
+<% javascript("application.slideshow") %>
+<% javascript("application.photo_viewer") %>
+<% javascript("application.collapse_div") %>
+
+<% unless @country.blank? then %>
+  <% title "#{@country.name}", false %>
+  <% meta_keywords "#{@country.name} #{APP_CONFIG[:meta_keywords]}" %>
+  <% meta_description "#{@country.name}. #{APP_CONFIG[:meta_description]}" %>
+<% end %>
+
+<%= yield(:destinations) %>
+
+<div id="pois-organizer" class="boxed">
+
+  <div class="box-header">
+
+    <ul class="tabs-nav">
+
+      <% unless @pois_featured.empty? %>
+        <li><a href="#featured-pois">Featured</a></li>
+      <% end %>
+
+      <li><a href="#most-viewed-pois" >Most Viewed</a></li>
+
+    </ul>
+
+  </div>
+
+  <% unless @pois_featured.empty? %>
+    <div id="featured-pois" class="tab-content">
+      <%= render :partial => 'home/tab-entry', :locals => {:pois => @pois_featured} %>
+    </div>
+  <% end %>
+
+  <div id="most-viewed-pois" class="tab-content">
+    <%= render :partial => 'home/tab-entry', :locals => {:pois => @pois_most_viewed} %>
+  </div>
+
+</div>
+
+
+<% unless @random_promo.blank? %>
+  <%= render :partial => 'home/entry',
+             :locals => {:poi => @random_promo, :entry_title => "Promo"} %>
+<% end %>
+
+<% unless @random_tour.blank? %>
+  <%= render :partial => 'home/entry',
+             :locals => {:poi => @random_tour, :entry_title => "Tour"} %>
+<% end %>
+
+<% unless @random_attraction.blank? %>
+  <%= render :partial => 'home/entry',
+           :locals => {:poi => @random_attraction, :entry_title => "Attraction"} %>
+<% end %>
+
+<% unless @random_hotel.blank? %>
+  <%= render :partial => 'home/entry',
+           :locals => {:poi => @random_hotel, :entry_title => "Hotel"} %>
+<% end %>
+
+<%= yield(:content) %>
+
+<% content_for :sidebar do %>
+  <% unless @top_destinations.blank? %>
+    <div id="top-destinations" class="boxed">
+
+      <div class="box-header">
+        <ul class="nav">
+          <li><a class="current" href="#tab-top-destinations">Top Destinations</a></li>
+        </ul>
+      </div>
+
+      <div class="list-wrap">
+
+        <% @top_destinations.in_groups(2, false) do |group| %>
+          <ul class="column_list">
+            <%= render :partial => "shared/top_destination", :collection => group %>
+          </ul>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="clear"></div>
+  <% end %>
+
+<% end %>

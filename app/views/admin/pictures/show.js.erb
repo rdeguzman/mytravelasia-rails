@@ -1,0 +1,2 @@
+$('#picture_count').html('<%= pluralize(@total_pictures, "Picture") %>');
+$('ul.admin_thumbs').append('<li><p><img src="<%= @picture.image.url(:thumb) %>" /><br/><%= @picture.image_file_name %></p><div><a href="/admin/pictures/<%= @picture.id %>/edit" id="edit_<%= @picture.id %>">Edit</a> | <a href="/admin/pictures/<%= @picture.id %>" data-confirm="Are you sure?" data-method="delete" id="delete_<%= @picture.id %>" rel="nofollow">Delete</a><br/><a href="/admin/pictures/<%= @picture.id %>/update_default" id="default_<%= @picture.id %>">Make Default</a></div></li>');

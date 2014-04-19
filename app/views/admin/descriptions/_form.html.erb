@@ -1,0 +1,14 @@
+<%= render "shared/error_messages", :target => @description %>
+
+<%= semantic_form_for [:admin, @description] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :content %>
+    <%= f.input :description_type, :hint => "This will serve also as the description title"  %>
+  <% end %>
+  
+  <%= f.hidden_field :parent_id, "value" => @parent.id %>
+  <%= f.hidden_field :table_name, "value" => @table_name %>
+  
+  <%= render :partial => 'shared/button', :locals => {:f => f} %>
+  
+<% end %>
