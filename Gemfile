@@ -33,7 +33,7 @@ gem "httparty"
 gem "recaptcha", :require => "recaptcha/rails"
 
 gem "apn_on_rails", :git => "https://github.com/rdeguzman/apn_on_rails.git", :branch => "master"
-#gem "psych"
+gem 'configatron', '~> 3.1.3'
 
 group :development do
   #if RUBY_PLATFORM.downcase.include?("darwin")
@@ -45,7 +45,8 @@ group :development do
   gem "rvm-capistrano"
 
   #used for fuzzy
-  #gem "fuzzy-string-match" #gem "amatch"
+  #gem "amatch"
+  #gem "fuzzy-string-match"
 
   gem "pg"
 end
