@@ -1,0 +1,32 @@
+hotel_data:
+  data_match:
+    country_codes: "BN,KH,HK,ID,LA,MY,MM,PH,SG,TW,TH,VN,CN,JP,KR,MO,IN,LK,AU,NZ,FJ"
+    countries: "Brunei,Cambodia,Hong Kong,Indonesia,Laos,Malaysia,Myanmar,Philippines,Singapore,Taiwan,Thailand,Vietnam,China,Japan,South Korea,Macau,India,Sri Lanka,Australia,New Zealand,Fiji"
+    dataset: "Poi,HotelsCombined,Agoda,PricelineBooking,AsiaRoom"
+    duplicate_name_threshold: 0.95
+    duplicate_address_threshold: 0.95
+    exact_name_threshold: 0.99
+    exact_address_threshold: 0.99
+    high_name_threshold: 0.95
+    high_address_threshold: 0.95
+    approximate_name_threshold: 0.90
+    approximate_address_threshold: 0.90
+    low_name_threshold: 0.85
+    low_address_threshold: 0.85
+    guess_name_threshold: 0.80
+    guess_address_threshold: 0.80
+    wild_guess_name_threshold: 0.75
+    wild_guess_address_threshold: 0.75
+    extremely_wild_guess_name_threshold: 0.70
+    extremely_wild_guess_address_threshold: 0.70
+
+  agoda:
+    source_path: "agoda/output"
+    main: "agoda-hotels-asia-en"
+    location: "agoda-hotels-asia-info-format3"
+
+  hotels_combined:
+    source_path: "hotels_combined/output"
+    main: "hc-hotels-all-asia-en"
+    filenames: "hc-hotels-list"
+    xml_path: "/Users/rupert/Desktop/files"
