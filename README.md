@@ -1,10 +1,20 @@
-## Requirements
-  Linux: debian
-  mysql: MySQL 5.1.49-3
+## Installation
   
-## Seeding the Database
+### OSX
+	
+	% brew install mysql
+	% brew install sphinx --mysql  
+	
+  
+## Let's get ready
 
-  First create "mta" user for mysql. 
+  READ tools/init.sh
+  
+  	% tools/init.sh  
+
+  **What does the script do?**
+
+  It creates "mta" user for mysql. 
   
   	GRANT ALL PRIVILEGES ON *.* TO 'mta'@'%' identified by 'mta' WITH GRANT OPTION;
   
@@ -12,6 +22,11 @@
 
 	GRANT ALL PRIVILEGES ON *.* TO 'rupert'@'%' identified by '' WITH GRANT OPTION;
 	
+  Create SPHINX directories	
+	
+  
+## Seeding the Database
+
   We can use "mta" in our database.yml for development and test environment    
 	development:
 	  adapter: mysql2
