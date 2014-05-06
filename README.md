@@ -1,6 +1,33 @@
 ## Requirements
   Linux: debian
   mysql: MySQL 5.1.49-3
+  
+## Seeding the Database
+
+  First create "mta" user for mysql.
+
+	GRANT ALL PRIVILEGES ON *.* TO 'mta'@'%' identified by 'mta' WITH GRANT OPTION;
+	
+ This should also reflect in your database.yml.  	
+	development:
+	  adapter: mysql2
+	  encoding: utf8
+	  reconnect: false
+	  database: tsa_development
+	  pool: 5
+	  username: mta
+	  password: mta
+	  socket: /tmp/mysql.sock
+	  
+  Note to change this in production ofcourse!
+
+  Runnig tools/restore.sh gives us the option to download a gzip sql OR use an existing SQL dump
+	
+	% tools/restore.sh
+	How do you want to seed the database?
+	1. Download from remote
+	2. Dump production from localhost
+	3. Use existing /Projects/rails/mytravelasia-rails/tmp/backups/tsa_production.sql
 
 ## Testing
 To test using rspec2 and cucumber simply run

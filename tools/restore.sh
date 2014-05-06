@@ -2,8 +2,16 @@
 CURRENT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BACKUP_DIR="$(echo $CURRENT_PATH | sed -e "s/tools//g")tmp/backups"
 DUMPFILE=tsa_production.sql
-USER=rupert
-PASSWORD=ENV['DBPASSWORD']
+USER=mta
+PASSWORD=$DBPASSWORD
+
+check_password(){
+  if [ "$DBPASSWORD" = "" ]; then
+    echo "Missing DBPASSWORD. Please do:"
+    echo "export DBPASSWORD=YOURPASSWORD"
+    exit 1;
+  fi
+}
 
 download(){
   rm -Rf $BACKUP_DIR/$DUMPFILE*
@@ -45,22 +53,26 @@ ask_import_all(){
   fi
 }
 
+check_password
 
-echo "Where will I pull the production database?"
+echo "How do you want to seed the database?"
 echo "1. Download from remote "
-echo "2. Dump production from localhost"
-echo "3. Use existing $BACKUP_DIR/$DUMPFILE"; read ans
+echo "2. Use existing $BACKUP_DIR/$DUMPFILE"
+echo "3. Dump production from localhost"
+read ans
 
 if [ $ans -eq "1" ];then
   echo "Downloading..."
   download
-elif [ $ans -eq "2" ]; then
+  ask_import_all
+elif [ $ans -eq "2" ];then
+  echo "Importing using existing $BACKUP_DIR/$DUMPFILE"
+  ask_import_all
+elif [ $ans -eq "3" ]; then
   mysqldump -u$USER -p$PASSWORD tsa_production > $BACKUP_DIR/$DUMPFILE
 else
   echo "No option chosen."
 fi
-
-ask_import_all
 
 echo "Done."
 
