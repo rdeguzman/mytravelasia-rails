@@ -1,7 +1,7 @@
 default_run_options[:pty] = true
 
 set :application, "mytravel-asia"
-set :rvm_ruby_string, 'ruby-2.1.1@mytravel-asia'
+set :rvm_ruby_string, 'ruby-2.1.1@mytravelasia'
 set :rvm_type, :user
 
 require "bundler/capistrano"
