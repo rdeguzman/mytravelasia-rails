@@ -4,11 +4,15 @@
   
 ## Seeding the Database
 
-  First create "mta" user for mysql.
+  First create "mta" user for mysql. 
+  
+  	GRANT ALL PRIVILEGES ON *.* TO 'mta'@'%' identified by 'mta' WITH GRANT OPTION;
+  
+  We also create a "rupert" user because some view was created by rupert.
 
-	GRANT ALL PRIVILEGES ON *.* TO 'mta'@'%' identified by 'mta' WITH GRANT OPTION;
+	GRANT ALL PRIVILEGES ON *.* TO 'rupert'@'%' identified by '' WITH GRANT OPTION;
 	
- This should also reflect in your database.yml.  	
+  We can use "mta" in our database.yml for development and test environment    
 	development:
 	  adapter: mysql2
 	  encoding: utf8

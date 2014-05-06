@@ -69,7 +69,7 @@ elif [ $ans -eq "2" ];then
   echo "Importing using existing $BACKUP_DIR/$DUMPFILE"
   ask_import_all
 elif [ $ans -eq "3" ]; then
-  mysqldump -u$USER -p$PASSWORD tsa_production > $BACKUP_DIR/$DUMPFILE
+  mysqldump -uroot -p tsa_production > $BACKUP_DIR/$DUMPFILE
 else
   echo "No option chosen."
 fi
