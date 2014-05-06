@@ -63,7 +63,7 @@ Tsa::Application.configure do
     :domain             => 'gmail.com',
     :authentication     => :plain,
     :user_name          => 'support@mytravel-asia.com',
-    :password           => '' # for security reasons you can use a environment variable too. (ENV['INFO_MAIL_PASS'])
+    :password           => ENV['INFO_MAIL_PASS'] # for security reasons you can use a environment variable too. (ENV['INFO_MAIL_PASS'])
   }
 
   config.action_mailer.default_url_options = { :host => 'www.mytravel-asia.com' }
