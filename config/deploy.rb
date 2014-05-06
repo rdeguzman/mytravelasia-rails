@@ -1,19 +1,13 @@
 default_run_options[:pty] = true
 
-if ENV['DEPLOY'] == 'PRODUCTION'
-  set :application, "mytravel-asia"
-  set :rvm_ruby_string, 'ruby-1.9.2-p180@mytravel-asia'
-else
-  set :application, "mytravel-asia-staging"
-  set :rvm_ruby_string, 'ruby-1.9.2-p180@mytravel-asia-staging'
-end
-
+set :application, "mytravel-asia"
+set :rvm_ruby_string, 'ruby-2.1.1@mytravel-asia'
 set :rvm_type, :user
 
 require "bundler/capistrano"
 require "rvm/capistrano"
 
-set :repository,  "git@robin:travelspotsinasia.git"
+set :repository,  "https://github.com/rdeguzman/mytravelasia-rails.git"
 set :deploy_to, "/srv/rails/#{application}"
 
 set :scm, :git
