@@ -1,0 +1,53 @@
+development:
+  version: 2.3.9
+  hc_a_aid: 23224
+  hc_brandid: 73925
+  agoda_cid: 1438344
+  priceline_booking_id: 347779
+  asia_room_id: 12962
+  meta_keywords: "Hotel, Tour, Accomodation, Mobile Map, iPhone App, Review"
+  meta_description: "Get local content from travellers. Exclusive Deals. Download info, map, photos to your mobile before you go."
+  top_destination_count: 100
+  country_top_destination_count: 50
+  google_maps_url: "http://maps.google.com/maps/api/js?sensor=false&v=3.7"
+  picture_fixed_thumb_size: "75x75"
+  fetch_rooms_check_in_date_from_now: 60
+  room_api: "http://www.mytravel-asia.com"
+  booking_email_recipients: "rupert@2rmobile.com"
+  admin_email: "rupert@2rmobile.com"
+
+test:
+  version: 2.3.9
+  hc_a_aid: 23224
+  hc_brandid: 73925
+  agoda_cid: 1438344
+  priceline_booking_id: 347779
+  asia_room_id: 12962
+  meta_keywords: "Hotel, Tour, Accomodation, Mobile Map, iPhone App, Review"
+  meta_description: "Get local content from travellers. Exclusive Deals. Download info, map, photos to your mobile before you go."
+  top_destination_count: 100
+  country_top_destination_count: 50
+  google_maps_url: "http://maps.google.com/maps/api/js?sensor=false&v=3.7"
+  picture_fixed_thumb_size: "75x75"
+  fetch_rooms_check_in_date_from_now: 7
+  room_api: "http://127.0.0.1:3000"
+  booking_email_recipients: "rupert@2rmobile.com,rndguzmanjr@yahoo.com"
+  admin_email: "rupert@2rmobile.com,rndguzmanjr@yahoo.com"
+
+production:
+  version: 2.3.9
+  hc_a_aid: 23224
+  hc_brandid: 73925
+  agoda_cid: 1438344
+  priceline_booking_id: 347779
+  asia_room_id: 12962
+  meta_keywords: "Hotel, Tour, Accomodation, Mobile Map, iPhone App, Review"
+  meta_description: "Get local content from travellers. Exclusive Deals. Download info, map, photos to your mobile before you go."
+  top_destination_count: 100
+  country_top_destination_count: 50
+  google_maps_url: "http://maps.google.com/maps/api/js?sensor=false&v=3.7"
+  picture_fixed_thumb_size: "75x75"
+  fetch_rooms_check_in_date_from_now: 7
+  room_api: "http://www.mytravel-asia.com"
+  booking_email_recipients: "rupert@2rmobile.com,caloylibosada@gmail.com"
+  admin_email: "rupert@2rmobile.com,caloylibosada@gmail.com"

@@ -25,7 +25,6 @@ config/secrets.yml
 .rvmrc
 
 # Application specific
-/config/app_config.yml
 /config/database.yml
 /config/*.pem
 /config/*.sphinx.conf
