@@ -60,6 +60,7 @@ namespace :deploy do
   task :restart do
     run "ln -s /srv/www/images/tsa /srv/rails/#{application}/current/public/images/tsa"
     run "ln -s /srv/rails/#{application}/shared/rvmrc /srv/rails/#{application}/current/.rvmrc"
+    run "ln -s /srv/rails/#{application}/shared/secret_token.rb /srv/rails/#{application}/current/config/initializers/secret_token.rb"
     run "ln -s /srv/rails/#{application}/shared/database.yml /srv/rails/#{application}/current/config/database.yml"
 
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
