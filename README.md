@@ -57,8 +57,13 @@ To test using rspec2 and cucumber simply run
 
 ## Indexing using Sphinx
 
-Thinking Sphinx can be started and reindex using:
+See list of Thinking Sphinx rake tasks
+    
+    rake -T ts
+    
+Thinking Sphinx can be configured, started and reindex using:
 
+	rake ts:conf or take ts:config
 	rake ts:index or rake ts:reindex
   	rake ts:start
 
