@@ -66,6 +66,35 @@ Thinking Sphinx can be configured, started and reindex using:
 	rake ts:conf or take ts:config
 	rake ts:index or rake ts:reindex
   	rake ts:start
+  	
+**When the server restarts we need to do the ff:**
+
+	cd /srv/rails/mytravel-asia/current
+	export RAILS_ENV=production
+	bundle exec rake ts:index
+	bundle exec rake ts:start  
+	
+	robin:rails/mytravel-asia/current[deploy]% bundle exec rake ts:index
+	WARNING: 'require 'rake/rdoctask'' is deprecated.  Please use 'require 'rdoc/task' (in RDoc 2.4.2+)' instead.
+    at /srv/rails/mytravel-asia/shared/bundle/ruby/2.1.0/gems/rake-0.9.2.2/lib/rake/rdoctask.rb
+	Generating Configuration to /srv/rails/mytravel-asia/releases/20140820213650/config/production.sphinx.conf
+	Sphinx 0.9.9-release (r2117)
+	Copyright (c) 2001-2009, Andrew Aksyonoff
+
+	using config file '/srv/rails/mytravel-asia/releases/20140820213650/config/production.sphinx.conf'...
+	indexing index 'poi_core'...
+	collected 40707 docs, 3.9 MB
+	sorted 0.6 Mhits, 100.0% done
+	total 40707 docs, 3884253 bytes
+	total 0.742 sec, 5228817 bytes/sec, 54798.04 docs/sec
+	distributed index 'poi' can not be directly indexed; skipping.
+	total 2 reads, 0.002 sec, 2400.6 kb/call avg, 1.3 msec/call avg
+	total 13 writes, 0.010 sec, 852.2 kb/call avg, 0.7 msec/call avg
+	
+	robin:rails/mytravel-asia/current[deploy]% bundle exec rake ts:start
+	WARNING: 'require 'rake/rdoctask'' is deprecated.  Please use 'require 'rdoc/task' (in RDoc 2.4.2+)' instead.
+    at /srv/rails/mytravel-asia/shared/bundle/ruby/2.1.0/gems/rake-0.9.2.2/lib/rake/rdoctask.rb
+	Started successfully (pid 26901).	
 
 ### Cronjob
 
