@@ -19,6 +19,7 @@ No Description: <%= @pois_no_description %><br/>
            :legend => ["Total Poi", "No Pictures", "No Location", "No Description"]
           ) %>
 
+<h2>Poi Count per country and category</h2>
 <table class="datatable">
   <thead>
   <tr>
@@ -33,6 +34,24 @@ No Description: <%= @pois_no_description %><br/>
       <td><%= stat.country_name %></td>
       <td><%= stat.poi_type_name %></td>
       <td><%= stat.total %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Pois with Pictures</h2>
+<table class="datatable">
+  <thead>
+  <tr>
+    <td>Country</td>
+    <td>Total</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @picture_statistics.each do |stat| %>
+    <tr>
+      <td><%= stat.country_name %></td>
+      <td><%= stat.total_pictures %></td>
     </tr>
   <% end %>
   </tbody>

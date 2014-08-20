@@ -14,6 +14,8 @@ class Admin::DashboardController < Admin::ApplicationController
 
       @poi_statistics = Poi.find_by_sql('SELECT country_name, poi_type_name, count(*) as total from pois GROUP BY country_name, poi_type_name')
 
+      @picture_statistics = Poi.find_by_sql('SELECT country_name, count(*) as total_pictures from pois WHERE total_pictures > 0 GROUP BY country_name')
+
       render 'index'
     end
   end
