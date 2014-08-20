@@ -1,3 +1,5 @@
+<% javascript('datatables-init') %>
+
 <p style="font-size: 14px;">
 Total Pois: <%= @pois_total %><br/>
 No Pictures: <%= @pois_no_pictures %> <%= @pois_no_pictures_grouped %><br/>
@@ -17,3 +19,21 @@ No Description: <%= @pois_no_description %><br/>
            :legend => ["Total Poi", "No Pictures", "No Location", "No Description"]
           ) %>
 
+<table class="datatable">
+  <thead>
+  <tr>
+    <td>Country</td>
+    <td>Category</td>
+    <td>Total</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @poi_statistics.each do |stat| %>
+    <tr>
+      <td><%= stat.country_name %></td>
+      <td><%= stat.poi_type_name %></td>
+      <td><%= stat.total %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
