@@ -5,14 +5,10 @@ class Admin::DashboardController < Admin::ApplicationController
       redirect_to root_path, {:notice => "Hi, this is not an error message but we have redirected you to our home page. The previous request is restricted to admins and moderators only."}
     else
       @pois_total = Poi.count
-      @pois_no_pictures = Poi.where(:total_pictures => 0).count
-      @pois_no_pictures_grouped = Poi.where(:total_pictures => 0).count(:group => :poi_type_name)
-      @pois_no_location = Poi.where("latitude is null OR latitude = 0 OR longitude is null OR longitude = 0").count
-      @pois_no_location_grouped = Poi.where("latitude is null OR latitude = 0 OR longitude is null OR longitude = 0").count(:group => :poi_type_name)
-      @pois_no_description = Poi.where("description is null OR description = ''").count
-      @countries = Country.alphabetically
 
-      @poi_statistics = Poi.find_by_sql('SELECT country_name, poi_type_name, count(*) as total from pois GROUP BY country_name, poi_type_name')
+      @poi_total_stats = Poi.find_by_sql('SELECT country_name, count(*) as total from pois GROUP BY country_name')
+
+      @poi_type_stats = Poi.find_by_sql('SELECT country_name, poi_type_name, count(*) as total from pois GROUP BY country_name, poi_type_name')
 
       @picture_statistics = Poi.find_by_sql('SELECT country_name, count(*) as total_pictures from pois WHERE total_pictures > 0 GROUP BY country_name')
 

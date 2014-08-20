@@ -1,23 +1,25 @@
 <% javascript('datatables-init') %>
 
-<p style="font-size: 14px;">
-Total Pois: <%= @pois_total %><br/>
-No Pictures: <%= @pois_no_pictures %> <%= @pois_no_pictures_grouped %><br/>
-No Location: <%= @pois_no_location %> <%= @pois_no_location_grouped %><br/>
-No Description: <%= @pois_no_description %><br/>
-</p>
+<h2>Total Pois: <%= @pois_total %></h2>
 
-<%= image_tag Gchart.bar(:title => "POIs",
-           :data => [[@pois_total], [@pois_no_pictures], [@pois_no_location], [@pois_no_description]],
-           :min_value => 0,
-           :max_value => 30000,
-           :bar_colors => ['00FF00','FF0000', 'FFC0CB', 'F88379'],
-           :stacked => false,
-           :size => '400x200',
-           :axis_with_labels => "y",
-           :orientation => 'vertical',
-           :legend => ["Total Poi", "No Pictures", "No Location", "No Description"]
-          ) %>
+<h2>Poi Count</h2>
+<table class="datatable">
+  <thead>
+  <tr>
+    <td>Country</td>
+    <td>Total</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @poi_total_stats.each do |stat| %>
+    <tr>
+      <td><%= stat.country_name %></td>
+      <td><%= stat.total %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
 
 <h2>Poi Count per country and category</h2>
 <table class="datatable">
@@ -29,7 +31,7 @@ No Description: <%= @pois_no_description %><br/>
   </tr>
   </thead>
   <tbody>
-  <% @poi_statistics.each do |stat| %>
+  <% @poi_type_stats.each do |stat| %>
     <tr>
       <td><%= stat.country_name %></td>
       <td><%= stat.poi_type_name %></td>
