@@ -1,11 +1,7 @@
 <% if params[:country_name] == 'Philippines' %>
   <% @data[:ads].push({:poi_id => 159533,
-                       :width => 320,
-                       :height => 250,
-                       :image_link => picture_path(image_path('ads/promo_the_farm.png')) }) %>
-  <% @data[:ads].push({:poi_id => 159514,
-                       :width => 320,
-                       :height => 250,
-                       :image_link => picture_path(image_path('ads/coron.png')) }) %>
+                     :width => 320,
+                     :height => 200,
+                     :image_link => picture_path(image_path('ads/best_deals.png')) }) %>
 <% end %>
 <%= @data.to_json.html_safe %>
